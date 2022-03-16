@@ -15,7 +15,9 @@ class CreateInfraroodSensorTable extends Migration
     {
         Schema::create('infrarood_sensor', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string("name");
+            $table->int("ifr_value");
+            $table->string("fire")->default("nee");
         });
     }
 
