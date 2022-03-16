@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             TemperatureSeeder::class,
-            
+            InfraredSeeder::class,
         ]);
     }
 }

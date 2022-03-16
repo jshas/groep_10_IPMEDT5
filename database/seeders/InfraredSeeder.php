@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use DB;
 
 class InfraredSeeder extends Seeder
 {
@@ -13,6 +14,9 @@ class InfraredSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table("infrarood_sensor")->insert([
+            "name" => "Living room",
+            "ifr_value" => 0,
+        ]);
     }
 }
