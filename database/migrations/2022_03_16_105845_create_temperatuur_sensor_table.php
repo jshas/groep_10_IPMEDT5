@@ -15,7 +15,7 @@ class CreateTemperatuurSensorTable extends Migration
     {
         Schema::create('temperatuur_sensor', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->string("name")->unique();
             $table->float("temperature");
         });
     }
