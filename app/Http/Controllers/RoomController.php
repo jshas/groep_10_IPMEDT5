@@ -10,8 +10,7 @@ class RoomController extends Controller
 {
     public function index(){
         $rooms = Room::with('sensors')->get();
-        return $rooms;
-        // return view('welcome', ['user' => $user, 'product' => $product]);
+        return view('dashboard', ['rooms' => $rooms]);
     }
 
     public function show($name){
