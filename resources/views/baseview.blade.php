@@ -8,5 +8,7 @@
     <title>@yield('title')</title>
     {{-- Voeg: @section('title','De gewenste titel') toe aan het extend bestand om een een titel mee te geven in de extend. --}}
 </head>
-    @yield('body')
+    <body class='body'>
+        @yield('content')
+    </body>
 </html>
