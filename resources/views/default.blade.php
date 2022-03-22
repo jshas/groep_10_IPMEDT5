@@ -11,6 +11,7 @@
 <body>
     @foreach($temperature as $sensor)
         {{$sensor->name}}
+        : 
         {{$sensor->temperature}}
     @endforeach
 </body>
