@@ -12,9 +12,10 @@ class SmsController extends Controller
         Nexmo::message()->send([
             'to' => '31613013763',
             'from' => '31613013763',
-            'text' => 'Test SMS'
+            'text' => 'Brand Gedetecteerd!!!'
         ]);
 
         echo 'Message sent';
+        echo "<script>setTimeout(function(){ window.location.href = '/'; }, 5000);</script>";
     }
 }
