@@ -18,4 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get("/", [\App\Http\Controllers\TemperatureController::class, "index"]);
+
 Route::get('/sms', [SmsController::class, 'index']);

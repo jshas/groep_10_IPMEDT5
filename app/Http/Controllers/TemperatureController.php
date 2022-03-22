@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class TemperatureController extends Controller
+{
+    public function index()
+    {
+        return view("default", [
+            "temperature" => \App\Models\Temperature::all()
+        ]);
+    }
+}
