@@ -9,10 +9,12 @@
 </head>
 
 <body>
-    @foreach($temperature as $sensor)
-        {{$sensor->name}}
-        : 
-        {{$sensor->temperature}}
+    @foreach($temperature as $temp)
+        <p>{{$temp->name}}: {{$temp->temperature}}</p>
+    @endforeach
+
+    @foreach($infrared as $ifr)
+        <p>{{$ifr->name}}: {{$ifr->ifr_value}} : {{$ifr->fire}}</p>
     @endforeach
 </body>
 
