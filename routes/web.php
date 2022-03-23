@@ -23,6 +23,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-Route::get("/", [\App\Http\Controllers\SensorController::class, "index"]);
+Route::get("/sensor", [\App\Http\Controllers\SensorController::class, "index"]);
 
 Route::get('/sms', [SmsController::class, 'index']);
