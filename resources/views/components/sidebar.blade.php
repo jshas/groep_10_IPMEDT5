@@ -1,6 +1,6 @@
 <div class="sidenav">
-  <a href="#">Sensoren</a>
-  <a href="#">Unit toevoegen</a>
-  <a href="#">Sync</a>
-  <a href="#">Power opties</a>
+  <a href="#"><p class="sidenav__text">Sensoren</p></a>
+  <a href="#"><p class="sidenav__text">Unit toevoegen</p></a>
+  <a href="#"><p class="sidenav__text">Sync</p></a>
+  <a href="#"><p class="sidenav__text">Power opties</p></a>
 </div>

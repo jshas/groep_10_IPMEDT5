@@ -57,12 +57,15 @@ html{
     width: 160px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
-    top: 15rem; /* Stay at the top */
-    left: 0;
-background-color: #11A9FE;
+    top: 12rem; /* Stay at the top */
+    left: 0rem;
+background-color: var(--main-accent);
 border: 1px solid black;
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
+  }
+  .sidenav__text{
+    text-decoration: none;
   }
 
 /* rooms */
@@ -75,8 +78,8 @@ border: 1px solid black;
     align-items: center;
     align-content: start;
     gap: 1rem;
-    width: 100%;
-    margin: 1rem auto;
+    width: 60%;
+    margin: auto;
     padding:1rem;
     height: 100%;
 }
