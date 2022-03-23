@@ -39,7 +39,7 @@ class SensorSeeder extends Seeder
             'name' => 'South',
             'type' => 'Temperature',
             'room_name' => 'Bedroom',
-            'value' => 15,
+            'value' => 22,
         ]); 
         
     }
