@@ -6,7 +6,6 @@
 </header>
 
 <main class="dashboard">
-    {{--  --}}
     <section class="room-section"> <!-- Allrooms -->
 
     <article class="room"> <!-- All sensors per room -->
@@ -84,6 +83,4 @@
         </article>
 
     </section>
-
-
 </main>

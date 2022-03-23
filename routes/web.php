@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoomController;
+use App\Models\Room;
+use App\Models\Sensor;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [RoomController::class, 'index']);
+
+Route::get('/dashboard', function () {
     return view('dashboard');
 });
 Route::get('/room', function(){
