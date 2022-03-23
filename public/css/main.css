@@ -1,0 +1,174 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --safe-green: #00FF66;
+    --danger-red: #FF0000;  
+    --main-accent: #11A9FE;
+    --main-bg: #eeeeee;    
+    --dark-accent: #333;
+    --sensor-bg: rgba(11,11,11,0.1);
+
+}
+
+html{
+    font-size: 62.5%; /* 10px = 1rem */
+}
+
+.body{
+    position: relative;
+    max-width: 100vw;
+    min-height: 100vh;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #eee;
+    font-size: 1.6rem;
+}
+
+/* Index CSS */
+.page-header{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    width: 100%;
+    padding: 0 1rem;
+    position:relative;
+    top: 0;
+    background-color: var(--main-accent);
+
+}
+
+.page-header__heading{
+    font-size: 3rem;
+    width: 100%;
+}
+
+/* rooms */
+
+.room-section{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: center;
+    align-content: start;
+    gap: 1rem;
+    width: 100%;
+    margin: 1rem auto;
+    padding:1rem;
+    height: 100%;
+}
+
+
+.room{ 
+    /* One single space == .room */
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: max-content;
+    gap: 1rem;
+    padding: 1rem 0;
+    background-color: #eeeeee;
+    border: 0.2rem solid var(--main-accent);
+}
+
+.room__header{ 
+    /* Room Name */
+    display: flex;
+
+    justify-content: start;   
+    align-items: center;
+
+    height: 10%;
+    max-height: 10%;
+    width: 100%;
+    padding-left: 1rem;
+
+}
+
+.room__heading{
+    font-size: 2.8rem;
+}
+
+.room__sensors{ /* Room -> Sensors */
+    display: flex;
+    flex-flow: row wrap;
+    align-items: start;
+    align-content: start;
+    height: 90%;
+    width: 100%;
+    gap: 1rem;
+}
+
+/* Single sensor*/
+.sensor{
+    display: flex;
+    flex-flow: column nowrap;
+    height: 20rem;
+    max-height: 100%;
+    width: 95%;
+    max-width: 60rem;
+    margin: 1rem;
+    background-color: var(--sensor-bg);
+}
+
+.sensor__name{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 1rem;
+
+    height: 25%;
+    width: 100%;
+    
+    background-color: var(--dark-accent);
+    font-size: 2.4rem;
+    color: #eeeeee;
+}
+
+
+
+/* Sensor Description */
+
+.sensor__readout{
+    padding: 1rem;
+    width: 100%;
+    height: 75%;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+/* Sensor Icon */
+
+.sensor__figure{
+    width: 25%;
+    height: 100%;
+}
+
+.sensor__img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+
+.sensor__value{
+    width: 75%;
+    height: 100%;
+    font-size: 3rem;
+}
+
+/* utility classes */
+
+.u-flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
