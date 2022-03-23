@@ -39,13 +39,31 @@ html{
     position:relative;
     top: 0;
     background-color: var(--main-accent);
-
 }
 
 .page-header__heading{
     font-size: 3rem;
-    width: 100%;
+    float:right;
 }
+.page-header__img{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* sidenav styling */
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 160px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 15rem; /* Stay at the top */
+    left: 0;
+background-color: #11A9FE;
+border: 1px solid black;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+  }
 
 /* rooms */
 
@@ -185,3 +203,10 @@ html{
     justify-content: center;
     align-items: center;
 }
+
+/* Media query */
+@media only screen and (max-width: 600px) {
+    .page-header__img {
+      display: none;
+    }
+  }
