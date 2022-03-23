@@ -8,6 +8,11 @@ class SensorController extends Controller
 {
     public function index()
     {
+        // Deze Controller is voor nu niet meer in gebruik
+        // Hieronder staat oude code voor de vuurdetectie via de datatbase
+
+        
+
      
         // $temperature = \App\Models\Temperature::all();
         // $infrared = \App\Models\Infrared::all();
