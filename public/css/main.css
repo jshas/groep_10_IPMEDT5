@@ -165,6 +165,19 @@ html{
     font-size: 3rem;
 }
 
+
+/* card styling */
+.room__card{
+    display: block;
+    width: 80%;
+    height: 80vh;
+    margin: auto;
+}
+.temp__button{
+    width: 50%;
+    height: 3rem;
+}
+
 /* utility classes */
 
 .u-flex-center{

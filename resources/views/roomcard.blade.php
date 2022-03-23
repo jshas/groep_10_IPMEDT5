@@ -1,0 +1,1 @@
+<div class="room__card"><p>Dit is een kaartje met een kaartje </p></div>

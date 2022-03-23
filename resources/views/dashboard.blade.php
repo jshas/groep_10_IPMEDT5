@@ -8,13 +8,15 @@
 <main class="dashboard">
     {{--  --}}
     <section class="room-section"> <!-- Allrooms -->
-        <article class="room"> <!-- All sensors per room -->
+
+    <article class="room"> <!-- All sensors per room -->
+    <button class="temp__button"><a href="/room">Klik me bitch</a></button>
             <header class="room__header">
                 <h2 class="room__heading">Master Bedroom</h2>
             </header>
-
+            
             <section class="room__sensors">
-                <article class="sensor">
+            <article class="sensor">
                     <h3 class= "sensor__name">North-Temp-1</h3>
                     <section class="sensor__readout">
                         <figure class="sensor__figure">
@@ -22,7 +24,7 @@
                         </figure>
                         <p class="sensor__value u-flex-center">N/A &deg;C</p>
                     </section>
-                </article>
+                </article></a>
 
                 <article class="sensor">
                     <h3 class= "sensor__name">North-Flame-1</h3>
@@ -44,7 +46,7 @@
     
     
             </section>
-        </article>
+                            </article>
 
         <article class="room"> <!-- All sensors per room -->
             <header class="room__header">
