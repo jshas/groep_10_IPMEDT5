@@ -1,9 +1,9 @@
 @extends('baseview')
+@include('components/sidebar')
+@include('components/header')
 @section('title', 'Dashboard')
 
-<header class="page-header">
-    <h1 class="page-header__heading">Fire Detection System</h1>
-</header>
+
 
 <main class="dashboard">
     <section class="room-section"> <!-- Allrooms -->
