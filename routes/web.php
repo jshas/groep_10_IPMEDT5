@@ -21,3 +21,6 @@ Route::get('/', [RoomController::class, 'index']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+Route::get('/room', function(){
+    return view('roomcard');
+});
