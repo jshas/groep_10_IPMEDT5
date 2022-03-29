@@ -18,14 +18,14 @@ class SensorSeeder extends Seeder
             'name' => 'North',
             'type' => 'Flame',
             'room_name' => 'Living room',
-            'value' => 0,
+            'value' => 2,
         ]); 
         
         DB::table('sensors')->insert([
             'name' => 'North',
             'type' => 'Temperature',
             'room_name' => 'Living room',
-            'value' => 22,
+            'value' => 45,
         ]); 
         
         DB::table('sensors')->insert([
@@ -39,7 +39,22 @@ class SensorSeeder extends Seeder
             'name' => 'South',
             'type' => 'Temperature',
             'room_name' => 'Bedroom',
+            'value' => 55,
+        ]); 
+
+        DB::table('sensors')->insert([
+            'name' => 'Wall',
+            'type' => 'Temperature',
+            'room_name' => 'Stairs, 1st floor',
             'value' => 20,
+        ]); 
+
+        
+        DB::table('sensors')->insert([
+            'name' => 'Wall',
+            'type' => 'Flame',
+            'room_name' => 'Stairs, 1st floor',
+            'value' => 1,
         ]); 
         
     }

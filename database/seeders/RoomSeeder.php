@@ -20,5 +20,9 @@ class RoomSeeder extends Seeder
         DB::table('rooms')->insert([
             'name' => 'Living room',
         ]); 
+
+        DB::table('rooms')->insert([
+            'name' => 'Stairs, 1st floor',
+        ]); 
     }
 }
