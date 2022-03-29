@@ -8,6 +8,7 @@ use App\Models\Sensor;
 
 class RoomController extends Controller
 {
+    
     public function index(){
         $rooms = Room::with('sensors')->get();
         return view('dashboard', ['rooms' => $rooms]);
@@ -15,5 +16,10 @@ class RoomController extends Controller
 
     public function show($name){
         return Room::where('name', $name);
+    }
+
+    public function create(){
+        $rooms = Room::with('sensors')->get();
+        return view('rooms.create', ['rooms' => $rooms]);
     }
 }

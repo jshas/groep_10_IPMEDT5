@@ -18,9 +18,15 @@ use App\Models\Sensor;
 
 Route::get('/', [RoomController::class, 'index']);
 
+Route::get('/rooms/create', [RoomController::class, 'create']);
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+
+
+
 Route::get('/room', function(){
     return view('roomcard');
 });

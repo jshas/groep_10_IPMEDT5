@@ -27,7 +27,7 @@
                         @include('dashboard.sensor.flame')
                         @break 
                     @default
-                        <h1>Unknown sensor type. Check DB.h1>     
+                        <h1>Unknown sensor type. Check DB </h1>     
                 @endswitch
             @endforeach
         </section>
