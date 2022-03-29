@@ -14,8 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            TemperatureSeeder::class,
-            InfraredSeeder::class,
             RoomSeeder::class,
             SensorSeeder::class,
         ]);
