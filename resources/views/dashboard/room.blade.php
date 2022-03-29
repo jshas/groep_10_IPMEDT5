@@ -6,7 +6,16 @@
 
     <section class="room__sensors">        
         @foreach($room->sensors as $sensor)
-            @include('dashboard.sensor')
+        @switch($sensor->type)
+            @case('Temperature')
+                @include('dashboard.sensor.temperature')
+                @break        
+            @case('Flame') {{-- Has a 0 and 1 state in the DB. --}}
+                @include('dashboard.sensor.flame')
+                @break 
+            @default
+                <h1>Unknown sensor type. Check DB.h1>     
+        @endswitch
         @endforeach
     </section>
 </article>

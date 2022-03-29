@@ -6,6 +6,7 @@
 
 :root{
     --safe-green: #00FF66;
+    --warning--orange: orange;
     --danger-red: #FF0000;  
     --main-accent: #11A9FE;
     --main-bg: #eeeeee;    
@@ -137,12 +138,12 @@ border: 1px solid black;
 }
 
 .sensor--warning{
-    background-color: orange;
+    background-color: var(--warning--orange);
 }
 
 .sensor--alert{ 
-    background-color: #FF0000;
-    color: white;
+    background-color: var(--danger-red);
+    font-weight: 600;
 }
 
 .sensor__name{

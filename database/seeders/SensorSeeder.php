@@ -46,7 +46,7 @@ class SensorSeeder extends Seeder
             'name' => 'Wall',
             'type' => 'Temperature',
             'room_name' => 'Stairs, 1st floor',
-            'value' => 20,
+            'value' => 70
         ]); 
 
         
