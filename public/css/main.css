@@ -7,9 +7,11 @@
 :root{
     --safe-green: #00FF66;
     --warning--orange: orange;
-    --danger-red: #ff3b3b;  
+    --danger-red: #ff3b3b;
+    --danger-bg: #ff000021;   
     --main-accent: #11A9FE;
-    --main-bg: #eeeeee;    
+    --main-bg: #11A9FE21;
+    --page-bg: #eeeeee;    
     --dark-accent: #333;
     --sensor-bg: #cccccc;
 
@@ -93,14 +95,13 @@ html{
     min-height: max-content;
     gap: 1rem;
     padding: 1rem 0;
-    border: 0.4rem solid var(--main-accent);
     background-color: #11A9FE21;
     border-radius: 1rem;
 }
 
 .room--alert{
     border-color: var(--danger-red);
-    background-color: #ff000021;
+    background-color: var(--danger-bg);
 }
 
 .room__header{ 
@@ -211,6 +212,14 @@ html{
 .temp__button{
     width: 50%;
     height: 3rem;
+}
+
+/* Table styling */
+
+.table{
+
+    background-color: #11A9FE21;
+
 }
 
 /* utility classes */
