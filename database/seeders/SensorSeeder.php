@@ -18,7 +18,7 @@ class SensorSeeder extends Seeder
             'name' => 'North',
             'type' => 'Flame',
             'room_name' => 'Living room',
-            'value' => 2,
+            'value' => 0,
         ]); 
         
         DB::table('sensors')->insert([
