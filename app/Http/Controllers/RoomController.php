@@ -13,6 +13,11 @@ class RoomController extends Controller
         return view('dashboard', ['rooms' => $rooms]);
     }
 
+    public function indexDetail(){
+        $rooms = Room::with('sensors')->get();
+        return view('roomcard', ['rooms' => $rooms]);
+    }
+
     public function show($name){
         return Room::where('name', $name);
     }
