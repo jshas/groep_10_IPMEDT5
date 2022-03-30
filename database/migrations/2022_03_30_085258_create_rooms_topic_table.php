@@ -15,10 +15,9 @@ class CreateRoomsTopicTable extends Migration
     {
         Schema::create('rooms_topic', function (Blueprint $table) {
             $table->id();
-            $table->string('topic');
+            $table->string('topic')->unique();
             $table->string('room_name');
             $table->foreign('room_name')->references('name')->on('rooms')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 
