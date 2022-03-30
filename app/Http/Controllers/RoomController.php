@@ -10,6 +10,13 @@ class RoomController extends Controller
 {
     public function index(){
         $rooms = Room::with('sensors')->get();
+        $sensors = \App\Models\Sensor::all();
+
+        foreach($sensors as $sensor) {
+            if($sensor->value >= 50 or $sensor->value == 1) {
+                return $this->fire();
+            }
+        }
         return view('dashboard', ['rooms' => $rooms]);
     }
 
@@ -63,7 +70,7 @@ class RoomController extends Controller
             }
 
         }
-        echo "Found Nothing";
-        echo "<script>setTimeout(function(){ window.location.href = '/'; }, 5000);</script>";
+        $rooms = Room::with('sensors')->get();
+        return view('dashboard', ['rooms' => $rooms]);
     }
 }
