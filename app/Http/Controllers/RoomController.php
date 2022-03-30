@@ -63,5 +63,7 @@ class RoomController extends Controller
             }
 
         }
+        echo "Found Nothing";
+        echo "<script>setTimeout(function(){ window.location.href = '/'; }, 5000);</script>";
     }
 }
