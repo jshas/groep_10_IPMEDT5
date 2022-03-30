@@ -15,6 +15,7 @@
     --dark-accent: #333;
     --sensor-bg: #cccccc;
 
+    --button-hover: #149be9;
 }
 
 html{
@@ -227,6 +228,9 @@ html{
 }
 
 .table__table{
+    display: flex;
+    align-items: start;
+    justify-content: start;
 }
 
 /* Form Styling */
@@ -244,7 +248,10 @@ html{
 .form__form{
     display: flex;
     flex-flow: column wrap;
-    width: 50%;
+    width: 50%;   
+}
+
+.form__description{
     
 }
 
@@ -273,12 +280,20 @@ html{
 .form__input{
     width: 100%;
     height: 4rem;
+    z-index: 2;
+}
+
+.form__input--error{
+    border-color: var(--danger-red);
+
+
 }
 
 .form__alert{
     background-color: var(--danger-red);
     width: 100%;
-    padding-top: 1rem;
+    padding: 1rem 0.5rem;
+
 }
 
 .form__alert > p {
@@ -293,11 +308,8 @@ html{
 }
 
 .form__button:hover{
-    background-color: #149be9;
+    background-color: var(--button-hover);
     cursor: pointer;
-
-
-
 }
 
 /* page classes, used for <main> tags per page */
@@ -330,4 +342,10 @@ html{
       display: none;
     }
   }
+
+@media only screen and (max-width: 50rem){
+    .create-room{
+        width: 95%;
+    }
+}
 

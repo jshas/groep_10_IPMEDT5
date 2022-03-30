@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Sensor;
+use App\Models\RoomTopic;
 
 class RoomController extends Controller
 {
@@ -26,7 +27,8 @@ class RoomController extends Controller
      */
     public function create(){
         $rooms = Room::with('sensors')->get();
-        return view('rooms.create', ['rooms' => $rooms]);
+        $roomTopics = RoomTopic::get()->all();
+        return view('rooms.create', ['rooms' => $rooms, 'roomTopics' => $roomTopics]);
     }
 
     /**
@@ -35,10 +37,10 @@ class RoomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Room $room){
+    public function store(Request $request, Room $room, RoomTopic $roomTopic){
         $validated = $request->validate([
             'name' => 'required|unique:rooms|max:40',
-        ]);
+                ]);
         $room->name = $validated['name'];
         $room->save();
         return redirect('/rooms/create');
