@@ -12,6 +12,8 @@ class RoomController extends Controller
         $rooms = Room::with('sensors')->get();
         $sensors = \App\Models\Sensor::all();
 
+        // Kijk of er een abnormale waarde is. Als dat zo is ga dan naar de fire functie waar alles wordt nagekeken.
+        // Bij geen abnormale waardes return dan de homepagina.
         foreach($sensors as $sensor) {
             if($sensor->value >= 50 or $sensor->value == 1) {
                 return $this->fire();
@@ -70,6 +72,7 @@ class RoomController extends Controller
             }
 
         }
+        // Nadat alles is nagekeken en er geen vuur is gedetecteerd wordt de homepagina weergegeven.
         $rooms = Room::with('sensors')->get();
         return view('dashboard', ['rooms' => $rooms]);
     }
