@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
 class CreateRoomTopicsTable extends Migration
 {
     /**
@@ -16,7 +17,7 @@ class CreateRoomTopicsTable extends Migration
         Schema::create('room_topics', function (Blueprint $table) {
             $table->id();
             $table->string('topic')->unique();
-            $table->string('room_name');
+            $table->string('room_name')->nullable();
             $table->foreign('room_name')->references('name')->on('rooms');
         });
     }
