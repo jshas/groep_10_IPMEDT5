@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             InfraredSeeder::class,
             RoomSeeder::class,
             SensorSeeder::class,
+            RoomTopicSeeder::class,
         ]);
     }   
 }

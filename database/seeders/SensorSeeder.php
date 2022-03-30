@@ -45,7 +45,7 @@ class SensorSeeder extends Seeder
         DB::table('sensors')->insert([
             'name' => 'Wall',
             'type' => 'Temperature',
-            'room_name' => 'Stairs, 1st floor',
+            'room_name' => 'Basement',
             'value' => 70
         ]); 
 
@@ -53,7 +53,7 @@ class SensorSeeder extends Seeder
         DB::table('sensors')->insert([
             'name' => 'Wall',
             'type' => 'Flame',
-            'room_name' => 'Stairs, 1st floor',
+            'room_name' => 'Basement',
             'value' => 1,
         ]); 
         

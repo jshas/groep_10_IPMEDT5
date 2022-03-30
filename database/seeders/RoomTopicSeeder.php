@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use DB;
 
 class RoomTopicSeeder extends Seeder
 {
@@ -14,13 +15,16 @@ class RoomTopicSeeder extends Seeder
     public function run()
     {
         DB::table('room_topics')->insert([
-            'name' => 'bedroom',
-            'room_name' => 'Bedroom',
+            'topic' => 'bedroom',
         ]); 
 
         DB::table('room_topics')->insert([
-            'name' => 'Living room',
-            'room_name' => 'Living room',
+            'topic' => 'Living room',
+
+        ]); 
+
+        DB::table('room_topics')->insert([
+            'topic' => 'Basement',
         ]); 
     }
 }
