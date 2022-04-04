@@ -1,27 +1,16 @@
 @extends('baseview')
-@include('components/sidebar')
-@include('components/header')
-@section('title', 'Dashboard')
-
 <section class="room__detailed">
-<header class="room__header">
-        <h2 class="room__heading">Dit is een kamer</h2>
-    </header>
+    <p class="roomcard__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores omnis explicabo vitae facilis corporis quaerat, quia molestias quae ipsam alias? Aperiam magni expedita ex est soluta beatae sint a sapiente. </p>
+    <button onClick="createGrid()">Detailed view</button>
+    <form action="#" onsubmit="fillgrid();return false" class="grid__form">
+    <input class="grid__input" id="grid-text" type="text">
+    <input class="grid__input" type="submit">
+    </form>
+
     <div class="room__grid">
-        <div class="grid-item">1</div>
-  <div class="grid-item">2</div>
-  <div class="grid-item">3</div>
-  <div class="grid-item">4</div>
-  <div class="grid-item">5</div>
-  <div class="grid-item">6</div>
-  <div class="grid-item">7</div>
-  <div class="grid-item">8</div>
-  <div class="grid-item">9</div>
+    <!-- Divs met "grid__item" komen hier -->
     </div>
-<section class="room__sensors">        
-@foreach($room->sensors as $sensor)
-            @include('dashboard.sensor')
-        @endforeach
-    </section>
+
   
+
     </section>

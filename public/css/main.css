@@ -134,25 +134,46 @@ html{
     align-items: start;
     align-content: start;
     justify-content: center;
-    height: 90%;
+    height: 80%;
     width: 100%;
-    gap: 1rem;
 }
 /* room extended view styling*/
 .room__detailed{
-    position: flex;
     height: auto;
-    max-height: 60rem;
     max-width: 60%;
     border: 1px solid black;
     margin: 6rem auto;
+    border-radius: 1rem;
 }
 
 
 /* room grid styling */
 .room__grid{
     display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    width: 90%;
+    margin: 2rem auto;
 }
+
+.grid__input{
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+.room__buttons{
+ display: flex;
+ gap: 2rem;
+ margin: 1rem;
+}
+
+
+.roomcard__text{
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+
 /* Single sensor*/
 .sensor{
     display: flex;
