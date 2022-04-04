@@ -7,7 +7,6 @@
         };
     };
 @endphp
-
 {{-- Currently only relies on values reachable by temp sensor.  --}}
 
 
@@ -53,5 +52,10 @@
                 @endswitch
             @endforeach
         </section>
+        <section class="room__buttons">
+            <button class="room__button" onClick="createGrid()">Detailed view</button>
+            <button class="room__button" onClick="deleteGrid()">close view</button>
+            </section>
+            <div class="room__grid"></div>
     </article>
 @endif

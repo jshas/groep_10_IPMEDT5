@@ -46,7 +46,7 @@ class RoomController extends Controller
         return redirect('/rooms/create');
     }
 
-    /**+
+    /**
      * Display the specified resource.
      *
      * @param  string  $name
