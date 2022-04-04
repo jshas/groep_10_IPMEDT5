@@ -1,8 +1,6 @@
 @extends('baseview')
-@include('components/sidebar')
-@include('components/header')
 @section('title', 'Dashboard')
-
+@include('components/header')
 
 
 <main class="dashboard">
@@ -16,3 +14,5 @@
         @endif
     </section>
 </main>
+
+@include('components/sidebar')
