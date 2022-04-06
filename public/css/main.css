@@ -159,9 +159,13 @@ html{
     min-height: max-content;
     gap: 1rem;
     padding: 1rem 0;
-    background-color: #eeeeee;
-    border: 0.4rem solid var(--main-accent);
-    border-radius: 0.5rem;
+    background-color: var(--main-bg);
+    border-radius: 1rem;
+}
+
+.room--alert{
+    border-color: var(--danger-red);
+    background-color: var(--danger-bg);
 }
 
 .room__header{ 

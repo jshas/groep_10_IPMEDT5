@@ -27,9 +27,6 @@ Route::post('/rooms', [RoomController::class, 'store']);
 
 
 
-
-
-
 Route::get('/room', function(){
     return view('roomcard');
 });
