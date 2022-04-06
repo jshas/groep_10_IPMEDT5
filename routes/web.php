@@ -26,3 +26,11 @@ Route::get('/dashboard', function () {
 // Route::get("/sensor", [\App\Http\Controllers\RoomController::class, "fire"]);
 
 Route::get('/sms', [SmsController::class, 'index']);
+
+// De default route kan je verwijderen
+Route::get('/default', function () {
+    return view('default');
+});
+
+// Deze route zorgt ervoor dat de smscontroller update functie wordt aangesproken. Dit reset de database van sms_couting.
+Route::get('/reset', [SmsController::class, 'update']);

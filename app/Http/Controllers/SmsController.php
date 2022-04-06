@@ -32,4 +32,11 @@ class SmsController extends Controller
 
         
     }
+
+    public function update()
+    {
+        $affected = DB::table('sms_counting')
+              ->update(['count' => 0]);
+        return redirect("/");
+    }
 }

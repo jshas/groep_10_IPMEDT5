@@ -9,13 +9,9 @@
 </head>
 
 <body>
-    @foreach($temperature as $temp)
-        <p>{{$temp->name}}: {{$temp->temperature}}</p>
-    @endforeach
-
-    @foreach($infrared as $ifr)
-        <p>{{$ifr->name}}: {{$ifr->ifr_value}} : {{$ifr->fire}}</p>
-    @endforeach
+    <a href="/reset">
+        <button>Reset SmS</button>
+    </a>
 </body>
 
 </html>
