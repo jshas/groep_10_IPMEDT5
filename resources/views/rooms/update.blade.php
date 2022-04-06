@@ -1,11 +1,9 @@
 @extends('baseview')
-@section('title', 'Create Room')
+@section('title', 'Edit Room')
 @section('subheading', 'Add Room' )
 @include('components.header')
 
-@section('content')
-
-<main class="create-room">
+<main class="edit-room">
     <article class="form u-flex-center">
         <form class="form__form" action="/rooms" method="POST">
             @csrf
@@ -71,4 +69,3 @@
 
     </article>
 </main>
-@endsection

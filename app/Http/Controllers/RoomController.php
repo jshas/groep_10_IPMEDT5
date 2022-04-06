@@ -54,7 +54,8 @@ class RoomController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($name){
-        return view('Room::where('name', $name)->with('sensors')->get();
+        $room = Room::where('name', $name)->with('sensors')->first();
+        return view('rooms.show', ['room' => $room]);
     }
 
     /**
@@ -65,7 +66,9 @@ class RoomController extends Controller
      */
     public function edit($name)
     {
-        //
+        $room = Room::where('name', $name)->with('sensors')->first();
+        return view('rooms.edit', ['room' => $room]);
+        
     }
 
     /**
