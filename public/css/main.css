@@ -39,10 +39,7 @@ html{
 
 /* Index CSS */
 .page-header{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: center;
+
     height: 10vh;
     width: 100%;
     padding: 0 1rem;
@@ -51,10 +48,25 @@ html{
     border-bottom: 0.1rem solid black;
 }
 
+.page-header__link{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: revert;
+    width: 100%;
+    height: 100%;
+    color: black;
+}
+
+.page-header__link:visited{
+    color: black;
+}
+
 .page-header__heading{
     font-size: 3rem;
 }
-
 .page-header__figure{
     position: absolute;
     left: 2rem;
