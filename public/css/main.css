@@ -156,9 +156,8 @@ html{
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-height: max-content;
     gap: 1rem;
-    padding: 1rem 0;
+    padding: 1rem;
     background-color: var(--main-bg);
     border-radius: 1rem;
 }
@@ -172,11 +171,11 @@ html{
     /* Room Name */
     display: flex;
 
+
     justify-content: start;   
     align-items: center;
 
     height: 10%;
-    max-height: 10%;
     width: 100%;
     padding-left: 1rem;
 
@@ -192,7 +191,7 @@ html{
     align-items: start;
     align-content: start;
     justify-content: center;
-    height: 80%;
+    height: auto;
     width: 100%;
 }
 /* room extended view styling*/

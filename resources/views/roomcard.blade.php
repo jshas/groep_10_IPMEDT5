@@ -10,7 +10,4 @@
     <div class="room__grid">
     <!-- Divs met "grid__item" komen hier -->
     </div>
-
-  
-
-    </section>
+</section>
