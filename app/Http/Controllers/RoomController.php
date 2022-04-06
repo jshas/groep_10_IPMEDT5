@@ -16,6 +16,7 @@ class RoomController extends Controller
      */
     public function index(){
         $rooms = Room::with('sensors')->get();
+        $rooms;
         return view('dashboard', ['rooms' => $rooms]);
     }
     
@@ -53,7 +54,7 @@ class RoomController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($name){
-        return Room::where('name', $name);
+        return view('Room::where('name', $name)->with('sensors')->get();
     }
 
     /**

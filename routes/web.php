@@ -16,14 +16,26 @@ use App\Models\Sensor;
 |
 */
 
-Route::get('/', [RoomController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-Route::get('/rooms/create', [RoomController::class, 'create']);
-Route::post('/rooms', [RoomController::class, 'store']);
+Route::controller(Roomcontroller::class)->group(function () {
+    // READ
+    Route::get('/', 'index');
+    Route::get('/rooms', 'index');
+    Route::get('/rooms/{name}/show', 'show');
+    // CREATE
+    Route::get('/rooms/create', 'create');
+    Route::post('/rooms', 'store');
+    //UPDATE
+
+    //DELETE
+    // Single room
+
+});
+
 
 
 
