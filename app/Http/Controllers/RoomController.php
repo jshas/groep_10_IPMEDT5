@@ -11,6 +11,8 @@ class RoomController extends Controller
     public function index(){
         $rooms = Room::with('sensors')->get();
         $sensors = \App\Models\Sensor::all();
+        $sms_count = \App\Models\SmsCount::first();
+        echo $sms_count->count;
 
         // Kijk of er een abnormale waarde is. Als dat zo is ga dan naar de fire functie waar alles wordt nagekeken.
         // Bij geen abnormale waardes return dan de homepagina.
