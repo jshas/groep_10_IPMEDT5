@@ -20,6 +20,8 @@ class CreateSensorsTable extends Migration
             $table->string('room_name');
             $table->foreign('room_name')->references('name')->on('rooms')->onDelete('cascade');
             $table->integer('value')->default(0);
+            $table->integer('Xlocation');
+            $table->integer('Ylocation');
         });
 
         
