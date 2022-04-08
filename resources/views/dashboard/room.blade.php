@@ -9,11 +9,15 @@
 
         @foreach($room->sensors as $sensor)
             @include('dashboard.sensor')
+            
         @endforeach
+        
     </section>
-   <section class="room__buttons">
-    <button class="room__button" onClick="createGrid()">Detailed view</button>
-    <button class="room__button" onClick="deleteGrid()">close view</button>
-    </section>
-    <div class="room__grid"></div>
+    <section class="room__buttons">
+    <button class="room__button"  onClick="createGrid({{$sensor->id}})">Detailed view</button>
+    <button class="room__button"  onClick="deleteGrid({{$sensor->id}})">close view</button>
+    <button class="room__button"  onClick="sensorLocation({{$sensor->Xlocation}}, {{$sensor->Ylocation}})">grid fill</button>
+</section>
+
+    <div class="room__grid" id="{{$sensor->id}}"></div>
 </article> 

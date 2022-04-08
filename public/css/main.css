@@ -212,6 +212,10 @@ html{
     width: 50%;
 }
 
+.grid__item-filled{
+    background-color: var(--safe-green);
+}
+
 .room__buttons{
  display: flex;
  gap: 2rem;
