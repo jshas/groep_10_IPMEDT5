@@ -32,14 +32,16 @@ Route::controller(Roomcontroller::class)->group(function () {
     // CREATE
     Route::get('/rooms/create', 'create');
     Route::post('/rooms', 'store');
+
     //UPDATE
     Route::get('/rooms/{room}/edit', 'edit');
     Route::patch('/rooms/{room:name}', 'update')->name('rooms.update');
 
     //DELETE                    
-    // Single room
-
+    Route::delete('/rooms/{room:name}', 'destroy');
+        
 });
+
 
 
 

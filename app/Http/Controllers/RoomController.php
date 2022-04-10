@@ -84,6 +84,9 @@ class RoomController extends Controller
     public function update(Request $request, $id)
     {
         $room = Room::findOrFail($id);
+        $validated = $request->validate([
+            'name' => 'required|unique:rooms|max:40',
+                ]);
         $room->update(["name" => $request['name']]);
         return redirect('rooms/index')->withSuccess(__('User updated successfully.'));
     }
@@ -94,9 +97,10 @@ class RoomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($name)
+    public function destroy($id)
     {
-        //
+        Room::destroy($id);
+        return redirect('rooms');
     }
 }
 
