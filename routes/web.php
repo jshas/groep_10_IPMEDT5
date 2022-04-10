@@ -15,30 +15,26 @@ use App\Models\Sensor;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
-
 // Route::resource('rooms', 'App\Http\Controllers\RoomController');
 
 Route::controller(Roomcontroller::class)->group(function () {
+    // CREATE
+    Route::get('/rooms/create', 'create')->name('rooms.create');
+    Route::post('/rooms', 'store');
+    
     // READ
     Route::get('/', 'index');
     Route::get('/rooms/index', 'index');
     Route::get('/rooms', 'index');
     Route::get('/rooms/{room}', 'show');
-    // CREATE
-    Route::get('/rooms/create', 'create');
-    Route::post('/rooms', 'store');
+
 
     //UPDATE
-    Route::get('/rooms/{room}/edit', 'edit');
+    Route::get('/rooms/{room}/edit', 'edit')->name('rooms.edit');
     Route::patch('/rooms/{room:name}', 'update')->name('rooms.update');
 
     //DELETE                    
-    Route::delete('/rooms/{room:name}', 'destroy');
+    Route::delete('/rooms/{room:name}', 'destroy')->name('rooms.delete');;
         
 });
 
