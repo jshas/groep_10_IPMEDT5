@@ -400,15 +400,22 @@ html{
 
 .form__input--error{
     border-color: var(--danger-red);
+}
 
-
+.form__input--confirmation{
+    border-color: var(--safe-green);
 }
 
 .form__alert{
     background-color: var(--danger-red);
     width: 100%;
     padding: 1rem 0.5rem;
+}
 
+.form__confirmation{
+    background-color: var(--safe-green);
+    width: 100%;
+    padding: 1rem 0.5rem;
 }
 
 .form__alert > p {
@@ -426,6 +433,7 @@ html{
     background-color: var(--button-hover);
     cursor: pointer;
 }
+
 
 /* page classes, used for <main> tags per page */
 
@@ -445,6 +453,7 @@ html{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     margin: 0 auto;
 }
 

@@ -15,8 +15,11 @@
             </section>
             <section class="form__section">
                 <label class="form__label" for="name">Name</label>
-               <input class="form__input @error('name') form__input--error @enderror" id="name" placeholder="Name of the room (e.g: Basement)." name="name" type="text" value="{{ old('name') }}">
-                @if ($errors->get('name'))
+               <input class="form__input @error('name') form__input--error @enderror @if(Session::has('message')) form__input--confirmation"@endif id="name" placeholder="Name of the room (e.g: Basement)." name="name" type="text" value="{{ old('Name') }}">
+               @if (Session::has('message'))
+                <div class="form__confirmation">{{ Session::get('message') }}</div>
+               @endif 
+               @if ($errors->get('name'))
                     <section class="form__alert">
                         @foreach ($errors->get('name') as $error)
                             <p>{{ $error }}</p>
@@ -44,6 +47,7 @@
         </form>
 
         <article class="table  u-flex-center">
+
             <table class="table__table">
                 <tr class="table__row">
                     <th class="table__header">Current Rooms</th>

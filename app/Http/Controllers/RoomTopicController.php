@@ -12,6 +12,7 @@ class RoomTopicController extends Controller
         ]);
         $roomTopic->name = $validated['topic'];
         $room->save();
+     
     }
 
 }

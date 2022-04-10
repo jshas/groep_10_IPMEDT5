@@ -21,17 +21,22 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
+// Route::resource('rooms', 'App\Http\Controllers\RoomController');
+
 Route::controller(Roomcontroller::class)->group(function () {
     // READ
     Route::get('/', 'index');
+    Route::get('/rooms/index', 'index');
     Route::get('/rooms', 'index');
-    Route::get('/rooms/{name}/show', 'show');
+    Route::get('/rooms/{room}', 'show');
     // CREATE
     Route::get('/rooms/create', 'create');
     Route::post('/rooms', 'store');
     //UPDATE
+    Route::get('/rooms/{room}/edit', 'edit');
+    Route::patch('/rooms/{room:name}', 'update')->name('rooms.update');
 
-    //DELETE
+    //DELETE                    
     // Single room
 
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Room;
 use App\Models\Sensor;
 use App\Models\RoomTopic;
@@ -16,10 +17,9 @@ class RoomController extends Controller
      */
     public function index(){
         $rooms = Room::with('sensors')->get();
-        $rooms;
-        return view('dashboard', ['rooms' => $rooms]);
+        // echo $rooms;
+        return view('rooms.index', ['rooms' => $rooms]);
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +28,7 @@ class RoomController extends Controller
      */
     public function create(){
         $rooms = Room::with('sensors')->get();
-        $roomTopics = RoomTopic::get()->all();
+        $roomTopics = RoomTopic::get();
         return view('rooms.create', ['rooms' => $rooms, 'roomTopics' => $roomTopics]);
     }
 
@@ -38,12 +38,15 @@ class RoomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Room $room, RoomTopic $roomTopic){
+    // , Room $room, RoomTopic $roomTopic
+    public function store(Request $request){
+        $room = new Room;
         $validated = $request->validate([
             'name' => 'required|unique:rooms|max:40',
                 ]);
         $room->name = $validated['name'];
         $room->save();
+        $request->session()->flash('message', 'Room added sucessfully!');
         return redirect('/rooms/create');
     }
 
@@ -53,8 +56,7 @@ class RoomController extends Controller
      * @param  string  $name
      * @return \Illuminate\Http\Response
      */
-    public function show($name){
-        $room = Room::where('name', $name)->with('sensors')->first();
+    public function show(Room $room){
         return view('rooms.show', ['room' => $room]);
     }
 
@@ -64,11 +66,12 @@ class RoomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($name)
+    public function edit(Room $room)
     {
-        $room = Room::where('name', $name)->with('sensors')->first();
-        return view('rooms.edit', ['room' => $room]);
-        
+        return view('rooms.edit')
+            ->with('room', $room);
+
+
     }
 
     /**
@@ -78,13 +81,11 @@ class RoomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $name)
+    public function update(Request $request, $id)
     {
-        $newRoomname = $request->get()->first();
-        $room = Room::where("name", $name);
-        $room->name = $request->name;
-        $room->save();
-        return response();
+        $room = Room::findOrFail($id);
+        $room->update(["name" => $request['name']]);
+        return redirect('rooms/index')->withSuccess(__('User updated successfully.'));
     }
 
     /**
