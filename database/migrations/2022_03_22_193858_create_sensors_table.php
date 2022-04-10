@@ -18,7 +18,7 @@ class CreateSensorsTable extends Migration
             $table->string('name')->default('North');
             $table->string('type');
             $table->string('room_name');
-            $table->foreign('room_name')->references('name')->on('rooms')->onDelete('cascade');
+            $table->foreign('room_name')->references('name')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('value')->default(0);
         });
 
