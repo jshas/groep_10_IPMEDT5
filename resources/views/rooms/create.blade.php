@@ -2,6 +2,7 @@
 @section('title', 'Create Room')
 @section('subheading', 'Add Room' )
 @include('components.header')
+@include('components.sidebar')
 
 @section('content')
 
