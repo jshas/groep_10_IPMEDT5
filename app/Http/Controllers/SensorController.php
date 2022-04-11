@@ -61,9 +61,13 @@ class SensorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Sensor $sensor, Room $room)
     {
-        //
+        $room = Room::where('name', $sensor->room_name);
+        return view('sensors.edit')->with([
+            'sensor' => $sensor,
+            'room' => $room,
+        ]);
     }
 
     /**
@@ -75,7 +79,15 @@ class SensorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sensor= Sensor::findOrFail($id);
+        $validated = $request->validate([
+            'name' => 'required|unique:rooms|max:40',
+            'type' => 'required'
+                ]);
+        $sensor->name = $request['name'];
+        $sensor->type = $request['type'];
+        $sensor->save();
+        return redirect('rooms');
     }
 
     /**

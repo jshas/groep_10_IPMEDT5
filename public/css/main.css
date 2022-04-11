@@ -174,7 +174,7 @@ html {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
-    width: 50%;
+    width: 75%;
     margin: 2rem auto;
     height: 100%;
 
@@ -433,10 +433,18 @@ html {
     display: flex;
     gap: 2rem;
     padding: 2rem;
-    width: 100%;
+    width: 40%;
+    margin: 0 auto;
 
     flex-direction: column;
     box-shadow: 0 1rem 2rem rgba(11, 11, 11, 0.2);
+}
+
+.form__sensors{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .form__form {
@@ -527,7 +535,7 @@ html {
 /* page classes, used for <main> tags per page */
 
 .main {
-    width: 60%;
+    width: 75%;
     margin: 2rem auto;
     display: flex;
 
@@ -632,7 +640,7 @@ html {
     }
 
    .main{
-        width: 95%;
+        width: 75%;
     }
 
     .room-section {

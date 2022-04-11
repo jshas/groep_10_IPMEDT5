@@ -87,7 +87,9 @@ class RoomController extends Controller
         $validated = $request->validate([
             'name' => 'required|unique:rooms|max:40',
                 ]);
-        $room->update(["name" => $request['name']]);
+// 
+        $room->name = $validated['name'];
+        $room->save();
         return redirect('rooms')->withSuccess(__('User updated successfully.'));
     }
 
