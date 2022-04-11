@@ -282,6 +282,11 @@ html {
     border: none;
 }
 
+.room__button:visited,
+.room__button:active{
+    color: black;
+}
+
 .room__button:hover{
     background-color: var(--button-hover);
 

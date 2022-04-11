@@ -22,6 +22,7 @@
                     @csrf
                 </form>
             </section>
+
         </header>
 
         <section class="room__sensors">        
@@ -40,6 +41,7 @@
         </section>
         <section class="room__buttons room__buttons--edit">
             <a class="room__button" href="{{'/rooms/' . $room->id . '/sensor/create'}}">Add sensor</a>
+
         </section>
         <section class="room__buttons">
             <button class="room__button" onClick="createGrid()">Detailed view</button>
@@ -75,6 +77,10 @@
                         <h1>Unknown sensor type. Check DB.h1>     
                 @endswitch
             @endforeach
+        </section>
+        <section class="room__buttons room__buttons--edit">
+            <a class="room__button" href="{{'/rooms/' . $room->id . '/sensor/create'}}">Add sensor</a>
+
         </section>
         <section class="room__buttons">
             <button class="room__button" onClick="createGrid()">Detailed view</button>
