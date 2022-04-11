@@ -27,7 +27,7 @@ class SensorController extends Controller
      */
     public function store(Request $request, Sensor $sensor, Room $room)
     {
-        $request->session()->put('url.intended',url()->previous());
+        $request->session()->put('prev.url',url()->previous());
         $sensor = new sensor;
         $room = Room::find($room->id);
         $validated = $request->validate([
@@ -40,7 +40,7 @@ class SensorController extends Controller
         // dd($sensor);
         $room->sensors()->save($sensor);
         $request->session()->flash('message', 'Sensor added sucessfully!');
-        return redirect($request->session()->get('url.intended'));
+        return redirect($request->session()->get('prev.url'));
         
     }
 
@@ -84,8 +84,10 @@ class SensorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(Request $request, $id)
+    {        
+        $request->session()->put('prev.url',url()->previous());
+        Sensor::destroy($id);
+        return redirect($request->session()->get('prev.url'));
     }
 }

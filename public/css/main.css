@@ -362,6 +362,37 @@ html {
     font-size: 3rem;
 }
 
+.sensor__buttons{
+    display: flex;
+    flex-flow: row;
+    gap: 0.1rem;
+    width: 100%;
+    height: 4rem;
+
+    text-decoration: none;
+}
+
+.sensor__form{
+    width: 100%;
+}
+
+.sensor__button{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    background-color: var(--main-accent);
+    width: 100%;
+    height: 100%;
+    font-size: 1.8rem;
+}
+
+.sensor__button:hover{
+    background-color: var(--button-hover);
+    cursor: pointer;
+
+}
 
 /* card styling */
 .room__card {
@@ -415,7 +446,7 @@ html {
     width: 100%;
 }
 
-.form__form:not(:first){
+.form__form:not(first){
     margin-bottom: 2rem;
 }
 

@@ -11,14 +11,8 @@
                     </figure>
         </section>
     </section>
-    <section class="sensor__buttons sensor__buttons--edit">
-        <a class="sensor__button" href="{{'/sensors/' . $sensor->id . '/edit'}}">Edit</a>
-        <form action="{{ url('/rooms', ['id' => $room->id]) }}" method="post">
-            <input class="sensor__button" type="submit" value="Delete" />
-            @method('delete')
-            @csrf
-        </form>
-    </section>
+    @include('dashboard.sensor.editSection')
+
 </article>
 
 @elseif($sensor->value==1) {{--  Fire detected. This is not fine. --}}
@@ -34,6 +28,7 @@
             </figure>
         </section>
     </section>
+    @include('dashboard.sensor.editSection')
 </article>
 
 @else {{--  Incorrect value. --}}
@@ -47,5 +42,6 @@
             <p>No correct sensor value detected. Check DB directly.</p>
         </section>
     </section>
+    @include('dashboard.sensor.editSection')
 </article>
 @endif

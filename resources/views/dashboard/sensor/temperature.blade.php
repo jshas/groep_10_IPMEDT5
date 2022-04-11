@@ -7,6 +7,7 @@
         </figure>
         <p class="sensor__value u-flex-center">{{ $sensor->value  }} &deg;C </p>
     </section>
+    @include('dashboard.sensor.editSection')
 </article>
 
 @elseif($sensor->value >= 55) {{-- Alert state --}}
@@ -18,6 +19,7 @@
         </figure>
         <p class="sensor__value u-flex-center">{{ $sensor->value  }} &deg;C </p>
     </section>
+    @include('dashboard.sensor.editSection')
 </article>
 
 @else
@@ -29,5 +31,6 @@
         </figure>
         <p class="sensor__value u-flex-center">{{ $sensor->value  }} &deg;C </p>
     </section>
+    @include('dashboard.sensor.editSection')
 </article>
 @endif
