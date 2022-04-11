@@ -1,7 +1,7 @@
 @extends('baseview')
 @section('title', 'Edit ' . $room->name .  ' Room')
 @include('components.header')
-<main class="create-room">
+<main class="main">
     <article class="form u-flex-center">
         {{-- <form class="form__form" action="{{ route('rooms.update' , $room->id) }}" method="POST"> --}}
         <form class="form__form" action="/rooms/{{ $room->id }}"  method="POST">

@@ -34,8 +34,16 @@ html {
 /* <Main> Blocks */
 
 .dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     height: 80vh;
     max-height: 80vh;
+}
+
+.dashboard--create{
+    width: 100%;
 }
 
 /* Index CSS */
@@ -99,7 +107,7 @@ html {
     /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1;
     /* Stay on top */
-    bottom: 15rem;
+    top: 15rem;
     /* Stay at the top */
 
     padding: 2rem;
@@ -166,9 +174,8 @@ html {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
-    width: 60%;
-    margin: 0 auto;
-    padding: 1rem;
+    width: 50%;
+    margin: 2rem auto;
     height: 100%;
 
 }
@@ -180,7 +187,7 @@ html {
     flex-flow: column;
     justify-content: stretch;
     align-items: stretch;
-    gap: 1rem;
+    gap: 2rem;
     padding: 2rem;
     background-color: var(--main-bg);
     border-radius: 1rem;
@@ -199,7 +206,6 @@ html {
     align-items: center;
 
 
-    height: 30%;
     width: 100%;
     max-width: 100%;
     padding-left: 1rem;
@@ -207,8 +213,9 @@ html {
 }
 
 .room__heading {
-    display: block;
-    height: 4rem;
+    display: flex;
+    align-items: center;
+    height: 100%;
     width: 50%;
     
     font-size: 2.8rem;
@@ -373,11 +380,12 @@ html {
 
 .table {
     display: flex;
+    margin-top: 2rem;
     gap: 1rem;
     width: 50%;
     height: auto;
     padding: 1rem;
-    margin: 0 auto;
+    margin: 2rem auto;
     box-shadow: 0 1rem 2rem rgba(11, 11, 11, 0.2);
 }
 
@@ -395,23 +403,28 @@ html {
     gap: 2rem;
     padding: 2rem;
     width: 100%;
+
     flex-direction: column;
     box-shadow: 0 1rem 2rem rgba(11, 11, 11, 0.2);
 }
 
 .form__form {
+    height:100%;
     display: flex;
     flex-flow: column wrap;
-    width: 50%;
+    width: 100%;
 }
 
-.form__description {}
+.form__form:not(:first){
+    margin-bottom: 2rem;
+}
 
-.form__header {
+
+.form__heading {
     display: flex;
     width: 100%;
-    height: 2rem;
     margin-bottom: 1rem;
+    font-size: 2.2rem;
 
 }
 
@@ -437,6 +450,14 @@ html {
 
 .form__input--error {
     border-color: var(--danger-red);
+}
+
+.form__select{
+    height: 4rem;
+}
+
+.form__option{
+    height: 4rem;
 }
 
 .form__input--confirmation {
@@ -474,10 +495,9 @@ html {
 
 /* page classes, used for <main> tags per page */
 
-.create-room {
-    margin-top: 2rem;
+.main {
     width: 60%;
-    margin: 0 auto;
+    margin: 2rem auto;
     display: flex;
 
 
@@ -491,11 +511,14 @@ html {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 0 auto;
 }
 
 .u-box-shadow {
     box-shadow: 0 0.5rem 2rem black;
+}
+
+*:focus-visible{
+    border: 0.5rem #ff3b3b;
 }
 
 /* Media query */
@@ -505,20 +528,11 @@ html {
     }
 }
 
-@media only screen and (max-width: 50rem) {
-    .create-room {
-        width: 95%;
-    }
 
-    .room-section {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 60rem) {
+    
     .room-section {
         max-height: 80vh;
-        overflow-y: scroll;
     }
 
     .page-header__figure {
@@ -575,6 +589,23 @@ html {
 
     .room-section {
         width: 100%;
+    }
+
+}
+
+
+@media only screen and (max-width: 89rem) {
+
+    .form{
+        width: 100%;
+    }
+
+   .main{
+        width: 95%;
+    }
+
+    .room-section {
+        grid-template-columns: 1fr;
     }
 
 }

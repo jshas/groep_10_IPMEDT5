@@ -29,7 +29,7 @@ class RoomController extends Controller
     public function create(){
         $rooms = Room::with('sensors')->get();
         $roomTopics = RoomTopic::get();
-        return view('rooms.create', ['rooms' => $rooms, 'roomTopics' => $roomTopics]);
+        return view('/rooms/create', ['rooms' => $rooms, 'roomTopics' => $roomTopics]);
     }
 
     /**
@@ -88,7 +88,7 @@ class RoomController extends Controller
             'name' => 'required|unique:rooms|max:40',
                 ]);
         $room->update(["name" => $request['name']]);
-        return redirect('rooms/index')->withSuccess(__('User updated successfully.'));
+        return redirect('rooms')->withSuccess(__('User updated successfully.'));
     }
 
     /**

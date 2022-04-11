@@ -21,9 +21,9 @@ class Room extends Model
     ];
 
 
-    public function getRouteKeyName(){
-        return 'name';
-    }
+    // public function getRouteKeyName(){
+    //     return 'name';
+    // }
 
     public function sensors()
     {

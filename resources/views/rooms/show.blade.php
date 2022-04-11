@@ -1,6 +1,7 @@
 @extends('baseview')
 @include('components.header')
-<main class="dashboard">
+<main class="main">
+<main class="main">
     <section class="room-section">
         @include('dashboard.room')
     </section>

@@ -14,8 +14,8 @@
     <article class="room room--alert" > <!-- All sensors per room -->
         <header class="room__header">
             <h2 class="room__heading">{{ $room->name}}</h2>
-            <section class="room__buttons ">
-                <a class="room__button" href="{{'/rooms/' . $room->name . '/edit'}}">Edit</a>
+            <section class="room__buttons room__buttons--edit">
+                <a class="room__button" href="{{'/rooms/' . $room->id . '/edit'}}">Edit</a>
                 <form action="{{ url('/rooms', ['id' => $room->id]) }}" method="post">
                     <input class="room__button" type="submit" value="Delete" />
                     @method('delete')
@@ -38,6 +38,13 @@
                 @endswitch
             @endforeach
         </section>
+        <section class="room__buttons room__buttons--edit">
+            <a class="room__button" href="{{'/rooms/' . $room->id . '/sensor/create'}}">Add sensor</a>
+        </section>
+        <section class="room__buttons">
+            <button class="room__button" onClick="createGrid()">Detailed view</button>
+            <button class="room__button" onClick="deleteGrid()">close view</button>
+        </section>
     </article>
 
 @else
@@ -45,7 +52,7 @@
         <header class="room__header">
             <h2 class="room__heading">{{ $room->name}}</h2>
             <section class="room__buttons room__buttons--edit">
-                <a class="room__button" href="{{'/rooms/' . $room->name . '/edit'}}">Edit</a>
+                <a class="room__button" href="{{'/rooms/' . $room->id . '/edit'}}">Edit</a>
                 <form action="{{ url('/rooms', ['id' => $room->id]) }}" method="post">
                     <input class="room__button" type="submit" value="Delete" />
                     @method('delete')

@@ -5,11 +5,11 @@
 
 @section('content')
 
-<main class="create-room">
+<main class="main">
     <article class="form u-flex-center">
-        <form class="form__form" action="/rooms" method="POST">
+     <form class="form__form" action="/rooms" method="POST">   
             @csrf
-            <h2 class="form__header">Add New Room </h2>
+            <h2 class="form__heading">Add New Room </h2>
             <section class="form__description">
                 <p>This form is used to add rooms to the database. Every room name has to be unique.</p>
             </section>
