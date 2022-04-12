@@ -184,7 +184,7 @@ html {
 .room {
     /* One single space == .room */
     display: flex;
-    flex-flow: column;
+    flex-flow: column                           ;
     justify-content: stretch;
     align-items: stretch;
     gap: 2rem;
@@ -221,13 +221,13 @@ html {
     font-size: 2.8rem;
 }
 
+/* The container in which the room-sensors are displayed. */
 .room__sensors {
     /* Room -> Sensors */
     display: flex;
     flex-flow: row wrap;
-    align-items: start;
-    align-content: start;
-    justify-content: space-between;
+    align-items: stretch;
+    justify-content: center;
     height: auto;
     width: 100%;
 }
@@ -305,19 +305,24 @@ html {
     flex-flow: column nowrap;
     height: 20rem;
     max-height: 100%;
-    width: 40%;
-    max-width: 60rem;
+    min-width: 20rem;
+    max-width: 40rem;
+    flex-grow: 1;
+
+
     margin: 1rem;
     background-color: var(--sensor-bg);
 }
 
 .sensor--warning {
     background-color: var(--warning--orange);
+    flex-grow: 1;
 }
 
 .sensor--alert {
     background-color: var(--danger-red);
     font-weight: 600;
+    flex-grow: 1;
 }
 
 .sensor__name {
@@ -574,6 +579,11 @@ html {
 
 
 @media only screen and (max-width: 60rem) {
+
+    .main{
+        width: 50%;
+        flex-direction: column;
+    }
     
     .room-section {
         max-height: 80vh;
