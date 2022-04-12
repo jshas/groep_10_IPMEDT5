@@ -32,11 +32,14 @@ class SensorController extends Controller
         $room = Room::find($room->id);
         $validated = $request->validate([
             'name' => 'required|unique:rooms|max:40',
-            'type' => 'required'
+            'type' => 'required',
+            'location' => 'min:0|max:99',
                 ]);
         $sensor->name = $validated['name'];
         $sensor->type = $validated['type'];
         $sensor->room_name = $room['name'];
+        $sensor->location = $validated['location'];
+        
         // dd($sensor);
         $room->sensors()->save($sensor);
         $request->session()->flash('message', 'Sensor added sucessfully!');
@@ -82,10 +85,12 @@ class SensorController extends Controller
         $sensor= Sensor::findOrFail($id);
         $validated = $request->validate([
             'name' => 'required|unique:rooms|max:40',
-            'type' => 'required'
+            'type' => 'required',
+            'location' => 'required|min:0|max:99',
                 ]);
         $sensor->name = $request['name'];
         $sensor->type = $request['type'];
+        $sensor->location = $request['location'];
         $sensor->save();
         return redirect('rooms');
     }

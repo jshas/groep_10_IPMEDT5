@@ -30,17 +30,15 @@
 
             <section class="form__section">
                 <label class="form__label" for="sensorSelect">Choose a sensor type:</label>
-                
                 <select class="form__input" name="type" id="type" required>
                     <option class="form__option" value="Flame" @if($sensor->type == 'Flame') selected @endif>Flame sensor</option>
                     <option class="form__option" value="Temperature"@if($sensor->type == 'Temperature') selected @endif>Temperature sensor</option>
                 </select>    
-
             </section>
 
             <section class="form__section">
-            <label class="form__label" for="sensorSelect">Select sensor location [0, 99]:</label>
-                <input type="number" class="form__input" min=0 max=99>
+            <label class="form__label" for="location">Select sensor location [0, 99]:</label>
+                <input type="number" name="location" id="location" class="form__input" min=0 max=99 value={{ $sensor->location }}>
             </section>
 
             {{-- Confirm button --}}

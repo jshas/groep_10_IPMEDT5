@@ -37,6 +37,12 @@
 
             </section>
 
+            <section class="form__section">
+                <label class="form__label" for="location">Select sensor location [0, 99]:</label>
+                    <input type="number" name="location" id="location" class="form__input" min=0 max=99 value=0>
+            </section>
+
+
 
             {{-- Confirm button --}}
             <section class="form__section">
