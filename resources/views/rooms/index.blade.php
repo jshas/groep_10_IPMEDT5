@@ -5,13 +5,11 @@
 
 <main class="main">
     <section class="room-section"> <!-- Allrooms -->
-        @if($rooms)
-            @foreach ($rooms as $room )
-                @include('dashboard.room')
-            @endforeach
-        @else
+        @forelse ($rooms as $room )
+            @include('dashboard.room')
+        @empty
             <h1>No rooms added to database.</h1>
-        @endif
+        @endforelse
     </section>
 </main>
 

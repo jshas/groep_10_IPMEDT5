@@ -11,7 +11,7 @@
 
 
 @if($roomAlert)
-    <article class="room room--alert" > <!-- All sensors per room -->
+    <article class="room room--alert" id={{ 'js--'.$room->id }} > <!-- All sensors per room -->
         <header class="room__header">
             <h2 class="room__heading">{{ $room->name}}</h2>
             <section class="room__buttons room__buttons--edit">
@@ -41,11 +41,7 @@
         <section class="room__buttons room__buttons--edit">
             <a class="room__button" href="{{'/rooms/' . $room->id . '/sensor/create'}}">Add sensor</a>
         </section>
-        @if($room->sensor){
-            @include('dashboard.roomPlan')
-
-        }
-        @endif
+        @include('dashboard.roomPlan')
 
 
 
@@ -53,7 +49,7 @@
     </article>
 
 @else
-    <article class="room" > <!-- All sensors per room -->
+    <article class="room" id={{ 'js--'.$room->id }}> <!-- All sensors per room -->
         <header class="room__header">
             <h2 class="room__heading">{{ $room->name}}</h2>
             <section class="room__buttons room__buttons--edit">
@@ -66,7 +62,6 @@
         
             </section>
         </header>
-
         <section class="room__sensors">        
             @foreach($room->sensors as $sensor)
                 @switch($sensor->type)
@@ -84,11 +79,6 @@
         <section class="room__buttons room__buttons--edit">
             <a class="room__button" href="{{'/rooms/' . $room->id . '/sensor/create'}}">Add sensor</a>
         </section>
-        @if($room->sensor){
-            @include('dashboard.roomPlan')
-
-        }
-        @endif
-
+        @include('dashboard.roomPlan')
     </article>
 @endif
