@@ -3,7 +3,7 @@
 @include('components/header')
 
 
-<main class="dashboard">
+<main class="main">
     <section class="room-section"> <!-- Allrooms -->
         @if($rooms)
             @foreach ($rooms as $room )

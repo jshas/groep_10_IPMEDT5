@@ -17,7 +17,7 @@ use App\Models\Sensor;
 |
 */
 
-Route::resource('rooms', RoomController::class);
+Route::resource('rooms', RoomController::class)->except('show');
 
 // All sensor routes:
 Route::resource('rooms.sensor', SensorController::class)->except([

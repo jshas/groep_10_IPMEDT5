@@ -1,15 +1,13 @@
-// Grid vullen met div's
-var selectedGrid = document.getElementsByClassName("room__grid")[0];
 function createGrid(){
-var y = 0;
-selectedGrid.style.display = "grid";
-selectedGrid.style.border = "1px solid black";
-while(y <= 99){
-    selectedGrid.style.minHeight = "50vh";
-    var newDiv = document.createElement("div");
-    newDiv.className = "grid__item";
-    selectedGrid.appendChild(newDiv)[y];
-}
+        var y = 0;
+        selectedGrid.style.display = "grid";
+        selectedGrid.style.border = "1px solid black";
+        while(y <= 99){
+            selectedGrid.style.minHeight = "50vh";
+            var newDiv = document.createElement("div");
+            newDiv.className = "grid__item";
+            selectedGrid.appendChild(newDiv)[y];
+        }
 }
 
 function fillgrid(){  
@@ -21,9 +19,9 @@ function deleteGrid(){
     selectedGrid.style.display = "none";
 }
 
-let deleteButtons = document.querySelectorAll("[value=Delete]");
-
 // Confirmation dialog voor delete forms
+let deleteButtons = document.querySelectorAll("[value=Delete]");
+console.log(deleteButtons);
 deleteButtons.forEach(deleteButton => {
     // Voorkomt dat de form submit zonder bevestiging
     deleteButton.parentNode.addEventListener('submit', (e) => {

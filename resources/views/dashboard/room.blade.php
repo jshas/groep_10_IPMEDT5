@@ -24,7 +24,6 @@
             </section>
 
         </header>
-
         <section class="room__sensors">        
             @foreach($room->sensors as $sensor)
                 @switch($sensor->type)
@@ -43,7 +42,7 @@
             <a class="room__button" href="{{'/rooms/' . $room->id . '/sensor/create'}}">Add sensor</a>
 
         </section>
-        <section class="room__buttons">
+        <section class="room__buttons room__buttons--grid">
             <button class="room__button" onClick="createGrid()">Detailed view</button>
             <button class="room__button" onClick="deleteGrid()">close view</button>
         </section>

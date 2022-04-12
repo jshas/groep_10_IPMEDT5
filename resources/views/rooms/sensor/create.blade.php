@@ -1,6 +1,6 @@
 @extends('baseview')
 @include('components.header')
-<main class="main">
+<main class="main main--create">
     <section class="form"> 
         <form class="form__form" action={{ "/rooms/" . $room->id. "/sensor"}} method="POST">   
             @csrf
@@ -31,7 +31,7 @@
 
                 <select class="form__select" name="type" id="type" required>
                     {{-- <option class="form__option" value="">--Please choose an option--</option> --}}
-                    <option class="form__option" value="Flame">Flame sensor</option>
+                    <option class="form__option" value="Flame" >Flame sensor</option>
                     <option class="form__option" value="Temperature">Temperature sensor</option>
                 </select>    
 
