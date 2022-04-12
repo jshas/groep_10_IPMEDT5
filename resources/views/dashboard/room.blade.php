@@ -40,12 +40,12 @@
         </section>
         <section class="room__buttons room__buttons--edit">
             <a class="room__button" href="{{'/rooms/' . $room->id . '/sensor/create'}}">Add sensor</a>
+        </section>
+        @include('dashboard.roomPlan')
 
-        </section>
-        <section class="room__buttons room__buttons--grid">
-            <button class="room__button" onClick="createGrid()">Detailed view</button>
-            <button class="room__button" onClick="deleteGrid()">close view</button>
-        </section>
+
+
+
     </article>
 
 @else
@@ -81,12 +81,7 @@
             <a class="room__button" href="{{'/rooms/' . $room->id . '/sensor/create'}}">Add sensor</a>
 
         </section>
-        <section class="room__buttons">
-            <button class="room__button"  onClick="createGrid({{$sensor->id}})">Detailed view</button>
-            <button class="room__button"  onClick="deleteGrid({{$sensor->id}})">close view</button>
-            <button class="room__button"  onClick="sensorLocation({{$sensor->location}}, {{$sensor->id}})">grid fill</button>
-        </section>
-        
-            <div class="room__grid" id="{{$sensor->id}}"></div>
+        @include('dashboard.roomPlan')
+
     </article>
 @endif
