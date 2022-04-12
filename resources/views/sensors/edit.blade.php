@@ -6,9 +6,10 @@
             @method('patch') 
             @csrf
             {{-- Form Description --}}
-            <h2 class="form__heading">Edit {{ $sensor->name }}  </h2>
+            <h2 class="form__heading">Edit {{ $sensor-> name }} ({{ $sensor->type }}) </h2>
             <section class="form__description">
-                <p>This form is used to add an existing sensor.</p>
+                <p class="form__text">Sensor associated with the {{ $sensor->room_name}} group.  </p>
+                <p class="form__text">This form is used to edit an existing sensor.</p>
             </section>
 
             {{-- Sensor name --}}
@@ -31,9 +32,8 @@
                 <label class="form__label" for="sensorSelect">Choose a sensor type:</label>
                 
                 <select class="form__select" name="type" id="type" required>
-                    <option class="form__option" value="">--Please choose an option--</option>
-                    <option class="form__option" value="Flame">Flame sensor</option>
-                    <option class="form__option" value="Temperature">Temperature sensor</option>
+                    <option class="form__option" value="Flame" @if($sensor->type == 'Flame') selected @endif>Flame sensor</option>
+                    <option class="form__option" value="Temperature"@if($sensor->type == 'Temperature') selected @endif>Temperature sensor</option>
                 </select>    
 
             </section>
