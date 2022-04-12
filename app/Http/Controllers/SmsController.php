@@ -12,6 +12,7 @@ class SmsController extends Controller
     {
         // Count voor de sms ophalen
         $sms_count = \App\Models\SmsCount::first();
+        $rooms = \App\Models\Room::with('sensors')->get();
 
         if($sms_count-> count <= 2) {
             // Nexmo::message()->send([
@@ -41,13 +42,16 @@ class SmsController extends Controller
             echo ". Over 5 seconden wordt u weer terug gestuurd naar de homepagina";
             echo "<script>setTimeout(function(){ window.location.href = '/'; }, 5000);</script>";
         }
-        if($sms_count-> count > 3) {
+        if($sms_count->count > 4) {
+            return view('dashboard', ['rooms' => $rooms]);
+        }
+        if($sms_count->count > 3) {
+            $affected = DB::table('sms_counting')
+                ->update(['count' => $sms_count->count + 1]);
             echo "Er zijn al genoeg smsjes verstuurd";
             echo ". Over 5 seconden wordt u weer terug gestuurd naar de homepagina";
             echo "<script>setTimeout(function(){ window.location.href = '/'; }, 5000);</script>";
-        }
-
-        
+        }        
     }
 
     public function update()
