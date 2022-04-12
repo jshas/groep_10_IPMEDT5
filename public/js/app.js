@@ -3,6 +3,9 @@
 var selectedGrid1 = document.querySelectorAll(".room__grid")[0];
 var selectedGrid2 = document.querySelectorAll(".room__grid")[1];
 
+const room1 = [1,2,3,4,5,6,7,11,13,14,15,16,17,21,22,23,24,25,26,27,81,82,83,84,85,91,92,93,94,95];
+const room2 = [1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,21,22,23,24,25,26,27,28,29,81,82,83,84,85,86,87,91,92,93,94,95,96,97];
+
 function createGrid(sensorId){
     var y = 0;
     while(sensorId == 4 && y <= 99){
@@ -36,16 +39,34 @@ function fillgrid(){
 }
 
 // grid verwijderen
-function deleteGrid(){
-    selectedGrid1.style.display = "none";
+function deleteGrid(sensorId){
+    if(sensorId == 4){
+        selectedGrid1.style.display = "none";
+    }
+   if(sensorId == 2){
     selectedGrid2.style.display = "none";
+   }
+  
 }
 
-function sensorLocation(locX,locY){
+function sensorLocation(loc, sensorId){
+    var x = 0;
+    if(sensorId == 4){
+        selectedGrid1.children[loc].style.backgroundColor = "green";
+        console.log(loc);
+        for (i in room1){
+            selectedGrid1.children[room1[x]].style.backgroundColor = "grey";
+            x++;
+        }
+    }
+    if(sensorId == 2){
+        selectedGrid2.children[loc].style.backgroundColor = "green";
+        console.log(loc);
+        for (i in room2){
+            selectedGrid2.children[room2[x]].style.backgroundColor = "grey";
+            x++;
+        }
 
-
-    selectedGrid1.children[locX].style.backgroundColor = "green";
-    console.log(selectedGrid1.children[locX]);
-    console.log(locY);
-    console.log(locX);
+    }
+   
 }
