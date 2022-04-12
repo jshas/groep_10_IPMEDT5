@@ -41,7 +41,11 @@
         <section class="room__buttons room__buttons--edit">
             <a class="room__button" href="{{'/rooms/' . $room->id . '/sensor/create'}}">Add sensor</a>
         </section>
-        @include('dashboard.roomPlan')
+        @if($room->sensor){
+            @include('dashboard.roomPlan')
+
+        }
+        @endif
 
 
 
@@ -79,9 +83,12 @@
         </section>
         <section class="room__buttons room__buttons--edit">
             <a class="room__button" href="{{'/rooms/' . $room->id . '/sensor/create'}}">Add sensor</a>
-
         </section>
-        @include('dashboard.roomPlan')
+        @if($room->sensor){
+            @include('dashboard.roomPlan')
+
+        }
+        @endif
 
     </article>
 @endif

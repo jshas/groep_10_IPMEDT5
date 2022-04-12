@@ -15,7 +15,7 @@
             {{-- Sensor name --}}
             <section class="form__section">
                 <label class="form__label" for="name">Name</label>
-               <input class="form__input @error('name') form__input--error @enderror id="name" placeholder="Name of the sensor." name="name" type="text" value="{{ old('Name') }}">
+               <input class="form__input @error('name') form__input--error @enderror id="name" placeholder="Name of the sensor." name="name" type="text" value={{ $sensor->name }}>
                @if (Session::has('message'))
                 <div class="form__confirmation">{{ Session::get('message') }}</div>
                @endif 
@@ -31,13 +31,17 @@
             <section class="form__section">
                 <label class="form__label" for="sensorSelect">Choose a sensor type:</label>
                 
-                <select class="form__select" name="type" id="type" required>
+                <select class="form__input" name="type" id="type" required>
                     <option class="form__option" value="Flame" @if($sensor->type == 'Flame') selected @endif>Flame sensor</option>
                     <option class="form__option" value="Temperature"@if($sensor->type == 'Temperature') selected @endif>Temperature sensor</option>
                 </select>    
 
             </section>
 
+            <section class="form__section">
+            <label class="form__label" for="sensorSelect">Select sensor location [0, 99]:</label>
+                <input type="number" class="form__input" min=0 max=99>
+            </section>
 
             {{-- Confirm button --}}
             <section class="form__section">
