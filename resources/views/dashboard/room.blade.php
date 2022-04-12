@@ -16,7 +16,7 @@
             <h2 class="room__heading">{{ $room->name}}</h2>
             <section class="room__buttons room__buttons--edit">
                 <a class="room__button" href="{{'/rooms/' . $room->id . '/edit'}}">Edit</a>
-                <form action="{{ url('/rooms', ['id' => $room->id]) }}" method="post">
+                <form jslabel={{ $room->name }} action="{{ url('/rooms', ['id' => $room->id]) }}" method="post">
                     <input class="room__button" type="submit" value="Delete" />
                     @method('delete')
                     @csrf

@@ -1,4 +1,3 @@
-
 // Grid vullen met div's
 var selectedGrid = document.getElementsByClassName("room__grid")[0];
 function createGrid(){
@@ -10,7 +9,6 @@ while(y <= 99){
     var newDiv = document.createElement("div");
     newDiv.className = "grid__item";
     selectedGrid.appendChild(newDiv)[y];
-    y++;
 }
 }
 
@@ -22,3 +20,24 @@ function fillgrid(){
 function deleteGrid(){
     selectedGrid.style.display = "none";
 }
+
+let deleteButtons = document.querySelectorAll("[value=Delete]");
+
+// Confirmation dialog voor delete forms
+deleteButtons.forEach(deleteButton => {
+    // Voorkomt dat de form submit zonder bevestiging
+    deleteButton.parentNode.addEventListener('submit', (e) => {
+        e.preventDefault();
+    })
+    // Linkt de 
+    deleteButton.addEventListener('click', (e) => {
+        let parentType = deleteButton.parentElement.classList[0];
+        console.log(parentType);
+        let result = window.confirm("Are you sure you want to delete this element?");
+        if(result){
+            deleteButton.parentNode.submit();
+        }
+      });
+    
+});
+
