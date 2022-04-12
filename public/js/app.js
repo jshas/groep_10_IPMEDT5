@@ -1,31 +1,31 @@
-
+let rooms =  document.getElementsByClassName('room');
+console.log(rooms);
 
 // Grid vullen met div's
-var selectedGrid1 = document.querySelectorAll(".room__grid")[0];
-var selectedGrid2 = document.querySelectorAll(".room__grid")[1];
+
 
 const room1 = [1,2,3,4,5,6,7,11,13,14,15,16,17,21,22,23,24,25,26,27,81,82,83,84,85,91,92,93,94,95];
 const room2 = [1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,21,22,23,24,25,26,27,28,29,81,82,83,84,85,86,87,91,92,93,94,95,96,97];
 
 function createGrid(sensorId){
-    var y = 0;
+    let y = 0;
     while(sensorId == 4 && y <= 99){
-    selectedGrid1.style.display = "grid";
-    selectedGrid1.style.border = "1px solid black";
-    selectedGrid1.style.minHeight = "50vh";
-    var newDiv = document.createElement("div");
-    newDiv.className = "grid__item";
-    selectedGrid1.appendChild(newDiv)[y];
-    y++;
-    }
-    var y = 0;
+        selectedGrid1.style.display = "grid";
+        selectedGrid1.style.border = "1px solid black";
+        selectedGrid1.style.minHeight = "50vh";
+        let newDiv = document.createElement("div");
+        newDiv.className = "grid__item";
+        selectedGrid1.appendChild(newDiv)[y];
+        y++;
+    } 
+    y = 0;
     while(sensorId == 2 && y <= 99){
-    selectedGrid2.style.display = "grid";
-    selectedGrid2.style.border = "1px solid black";
-    selectedGrid2.style.minHeight = "50vh";
-    var newDiv = document.createElement("div");
-    newDiv.className = "grid__item";
-    selectedGrid2.appendChild(newDiv)[y];
+        selectedGrid2.style.display = "grid";
+        selectedGrid2.style.border = "1px solid black";
+        selectedGrid2.style.minHeight = "50vh";
+        let newDiv = document.createElement("div");
+        newDiv.className = "grid__item";
+        selectedGrid2.appendChild(newDiv)[y];
     y++;
     }
 }
@@ -52,7 +52,7 @@ function deleteGrid(sensorId){
 
 // Confirmation dialog voor delete forms
 let deleteButtons = document.querySelectorAll("[value=Delete]");
-console.log(deleteButtons);
+
 deleteButtons.forEach(deleteButton => {
     // Voorkomt dat de form submit zonder bevestiging
     deleteButton.parentNode.addEventListener('submit', (e) => {
