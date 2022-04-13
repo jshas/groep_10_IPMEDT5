@@ -1,53 +1,31 @@
-let rooms =  document.getElementsByClassName('room');
-console.log(rooms);
 
-// Grid vullen met div's
-
-
-const room1 = [1,2,3,4,5,6,7,11,13,14,15,16,17,21,22,23,24,25,26,27,81,82,83,84,85,91,92,93,94,95];
-const room2 = [1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,21,22,23,24,25,26,27,28,29,81,82,83,84,85,86,87,91,92,93,94,95,96,97];
-
-function createGrid(sensorId){
+function createGrid(id){
+    // const z = document.getElementsByClassName("room")[id];
+    let z = document.getElementsByClassName("room")[id];
+    let grid = z.querySelector(".room__grid");
+    const str = z.id;
+    const last = str.charAt(str.length - 1);
+    gridId = parseInt(last);
     let y = 0;
-    while(sensorId == 4 && y <= 99){
-        selectedGrid1.style.display = "grid";
-        selectedGrid1.style.border = "1px solid black";
-        selectedGrid1.style.minHeight = "50vh";
+    while(id == last && y <= 99){
+        grid.style.display = "grid";
+        grid.style.border = "1px solid black";
+        grid.style.minHeight = "50vh";
         let newDiv = document.createElement("div");
         newDiv.className = "grid__item";
-        selectedGrid1.appendChild(newDiv)[y];
+        grid.appendChild(newDiv)[y];
         y++;
-    } 
-    y = 0;
-    while(sensorId == 2 && y <= 99){
-        selectedGrid2.style.display = "grid";
-        selectedGrid2.style.border = "1px solid black";
-        selectedGrid2.style.minHeight = "50vh";
-        let newDiv = document.createElement("div");
-        newDiv.className = "grid__item";
-        selectedGrid2.appendChild(newDiv)[y];
-    y++;
     }
 }
 
-// grid vullen
-function fillgrid(){  
-    var gridInput = document.getElementById("grid-text").value;
-    var selectedDiv1 = document.getElementsByClassName("grid__item")[gridInput];
-    selectedDiv1.style.backgroundColor = "black";
-    var selectedDiv2 = document.getElementsByClassName("grid__item")[gridInput];
-    selectedDiv2.style.backgroundColor = "black";
-}
+
+
 
 // grid verwijderen
-function deleteGrid(sensorId){
-    if(sensorId == 4){
-        selectedGrid1.style.display = "none";
-    }
-   if(sensorId == 2){
-    selectedGrid2.style.display = "none";
-   }
-  
+function deleteGrid(id){
+    let z = document.getElementsByClassName("room")[id];
+    let grid = z.querySelector(".room__grid");
+    grid.style.display = "none";  
 }
 
 // Confirmation dialog voor delete forms
@@ -70,25 +48,29 @@ deleteButtons.forEach(deleteButton => {
     
 });
 
-function sensorLocation(loc, sensorId){
-    var x = 0;
-    if(sensorId == 4){
-        selectedGrid1.children[loc].style.backgroundColor = "green";
-        console.log(loc);
-        for (i in room1){
-            selectedGrid1.children[room1[x]].style.backgroundColor = "grey";
-            x++;
-        }
-    }
+// Grid vullen met div's
 
-    if(sensorId == 2){
-        selectedGrid2.children[loc].style.backgroundColor = "green";
-        console.log(loc);
-        for (i in room2){
-            selectedGrid2.children[room2[x]].style.backgroundColor = "grey";
-            x++;
-        }
+const room1 = [1,2,3,4,5,6,7,11,13,14,15,16,17,21,22,23,24,25,26,27,81,82,83,84,85,91,92,93,94,95];
+const room2 = [1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,21,22,23,24,25,26,27,28,29,81,82,83,84,85,86,87,91,92,93,94,95,96,97];
+const room3 = [1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,21,22,23,24,25,26,27,28,29,81,82,83,84,85,86,87,91,92,93,94,95,96,97];
 
-    }
+const RoomArray = [room1,room2,room3];
+
+function sensorLocation(loc, id){
+        let x = 0;
+        let room = document.getElementsByClassName("room")[id];
+        let grid = room.querySelector(".room__grid");
+        roomGrid = RoomArray[id];
+        
+       for(i in roomGrid){
+        // sensor
+        grid.children[loc].style.backgroundColor = "green";
+        // meubelen
+        grid.children[roomGrid[x]].style.backgroundColor = "grey";
+        x++;   
+       }
+    
+    
+
    
 }
