@@ -37,7 +37,7 @@ class SensorController extends Controller
                 ]);
         $sensor->name = $validated['name'];
         $sensor->type = $validated['type'];
-        $sensor->room_name = $room['name'];
+        $sensor->room_id = $room['id'];
         $sensor->location = $validated['location'];
         
         // dd($sensor);
@@ -66,7 +66,7 @@ class SensorController extends Controller
      */
     public function edit(Sensor $sensor, Room $room)
     {
-        $room = Room::where('name', $sensor->room_name);
+        $room = Room::where('name', $sensor->room_id);
         return view('sensors.edit')->with([
             'sensor' => $sensor,
             'room' => $room,
@@ -107,4 +107,7 @@ class SensorController extends Controller
         Sensor::destroy($id);
         return redirect($request->session()->get('prev.url'));
     }
+    
 }
+
+

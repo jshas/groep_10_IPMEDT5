@@ -13,7 +13,7 @@ class Sensor extends Model
     use HasFactory;
 
     public function Sensor(){
-        return $this->belongsTo(Room::class, 'room_name', 'name');   
+        return $this->belongsTo(Room::class);   
     }
     
     
