@@ -11,14 +11,9 @@ class Room extends Model
     public $timestamps = false;
     
     // protected $primaryKey = 'name';
-    // public $incrementing = false;
+    // public $incrementing = true;
     // protected $keyType = ' string';
 
-
-    
-    protected $fillable = [
-        'name',
-    ];
 
 
     // public function getRouteKeyName(){
@@ -27,7 +22,7 @@ class Room extends Model
 
     public function sensors()
     {
-        return $this->hasMany(Sensor::class, 'room_name', 'name');
+        return $this->hasMany(Sensor::class, 'room_id', 'id');
     }
 
     // public function getRouteKeyName()

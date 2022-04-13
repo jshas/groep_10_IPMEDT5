@@ -17,8 +17,8 @@ class CreateRoomTopicsTable extends Migration
         Schema::create('room_topics', function (Blueprint $table) {
             $table->id();
             $table->string('topic')->unique();
-            $table->string('room_name')->nullable();
-            $table->foreign('room_name')->references('name')->on('rooms');
+            $table->foreignId('room_id')->nullable();
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -30,7 +30,7 @@ class CreateRoomTopicsTable extends Migration
     public function down()
     {
         Schema::table('room_topics', function (Blueprint $table) {
-            $table->dropForeign(['room_name']);
+            $table->dropForeign(['room_id']);
         });
         Schema::dropIfExists('room_topics');
     }
