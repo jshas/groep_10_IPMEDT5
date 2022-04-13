@@ -41,9 +41,32 @@
                 @endif    
             </section> --}}
 
+                
+            <section class="form__section">
+                <section class="form__description">
+                    <p>Cycle through the types of squares to toggle type..</p>
+                </section>
+                <section class="form__buttons">
+                    <button type="button" class="form__button" id="js--openCreateGrid">Open grid</button>
+                    <button type="button" class="form__button" id="js--closeCreateGrid">Close grid</button>
+                    <button type="button" class="form__button" id="js--resetCreateGrid">Reset grid</button>
+                </section>
+                <article class="form-grid" id="js--roomGrid">
+                    @for ($i = 0; $i < 100; $i++)
+                        <div 
+                        class="form-grid__item" 
+                        id={{ 'js--grid-item-' . $i }} 
+                        data-status="empty"
+                        data-coordinate={{ $i }}
+                        onClick="formGridItemHandler(event.target)"></div>
+
+                    @endfor
+                </article>
+            </section>
+
 
             <section class="form__section">
-                <button class="form__button type="submit">Add Room</button>
+                <button class="form__button" type="submit">Add Room</button>
             </section>
         </form>
 
@@ -58,10 +81,6 @@
                     </tr>
                 @endforeach
             </table>
-        </article>
-
-        <article class="roomGrid" id={{ $room->id }}>
-
         </article>
 
         {{-- <article class="table  u-flex-center">
