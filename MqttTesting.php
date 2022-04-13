@@ -16,11 +16,14 @@ use Psr\Log\LogLevel;
 $logger = new SimpleLogger(LogLevel::INFO);
 
 try {
+
+
     // Create a new instance of an MQTT client and configure it to use the shared broker host and port.
     $client = new MqttClient(MQTT_BROKER_HOST, MQTT_BROKER_PORT, 'test-subscriber', MqttClient::MQTT_3_1, null, $logger);
 
     // Connect to the broker without specific connection settings but with a clean session.
     $client->connect(null, true);
+
 
     // Subscribe to the topic 'hengseltest' using QoS 0.
     $client->subscribe('hengseltest', function (string $topic, string $message, bool $retained) use ($logger, $client) {
@@ -29,6 +32,7 @@ try {
             'message' => $message,
             'typeOfMessage' => $retained ? 'retained message' : 'message',
         ]);
+
 
         $host = "localhost";
         $db_user = "laravel";
@@ -39,27 +43,34 @@ try {
 
         if($sqlconnect->connect_errno!=0){
             echo "Error\n";
-        } else {
-
-            echo "Connected with database!\n";
-            $SQL="INSERT INTO temperatuur_sensor VALUES (, 'living_room', $message)";
-
-            if (@mysqli_query($sqlconnect, $SQL)){
-                echo "Added to database.\n";
-            } else{
-                echo "Not added to database.\n";
-            }
         }
 
+        echo "Connected with database!\n";
+
+        // Prepare insert into database
+        $stmt = $sqlconnect->prepare("INSERT INTO sensorvalue (name, temperature) VALUES (?, ?)");
+
+        $stmt->bind_param("sd", $roomname, $temperatuur);
+
+        // set parameters and execute
+        $roomname = $topic;
+        $temperatuur = $message;
+        $stmt->execute();
+
+        // Close connection
+        mysqli_stmt_close($stmt);
 
         // After receiving the first message on the subscribed topic, we want the client to stop listening for messages.
-        //     $client->interrupt();
+        // $client->interrupt();
     }, MqttClient::QOS_AT_MOST_ONCE);
+
 
     // Since subscribing requires to wait for messages, we need to start the client loop which takes care of receiving,
     // parsing and delivering messages to the registered callbacks. The loop will run indefinitely, until a message
     // is received, which will interrupt the loop.
+
     $client->loop(true);
+
 
     // Gracefully terminate the connection to the broker.
     $client->disconnect();
