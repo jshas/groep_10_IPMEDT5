@@ -16,7 +16,7 @@ class RoomController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $rooms = Room::with('sensors')->get();
+        $rooms = Room::with('sensors')->orderBy('id')->get();
         // echo $rooms;
         return view('rooms.index', ['rooms' => $rooms]);
     }
@@ -70,8 +70,6 @@ class RoomController extends Controller
     {
         return view('rooms.edit')
             ->with('room', $room);
-
-
     }
 
     /**
@@ -87,7 +85,6 @@ class RoomController extends Controller
         $validated = $request->validate([
             'name' => 'required|unique:rooms|max:40',
                 ]);
-// 
         $room->name = $validated['name'];
         $room->save();
         return redirect('rooms')->withSuccess(__('User updated successfully.'));
