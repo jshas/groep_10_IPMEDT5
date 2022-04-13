@@ -260,12 +260,29 @@ html {
 
 /* room grid styling */
 .room__grid {
-    display: grid;
+    display: none;
+    border: 0.1rem solid black;
+    min-height: 50vh;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
     width: 90%;
     margin: 2rem auto;
 }
+
+.grid__item{
+    height: 100%;
+    width: 100%;
+}
+
+.grid__item--sensor{ 
+    background-color: green;
+}
+
+.grid__item--furniture{
+    background-color: gray;
+}
+
+
 
 .grid__input {
     display: block;

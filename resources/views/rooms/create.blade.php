@@ -48,7 +48,6 @@
         </form>
 
         <article class="table  u-flex-center">
-
             <table class="table__table">
                 <tr class="table__row">
                     <th class="table__header">Current Rooms</th>
@@ -59,6 +58,10 @@
                     </tr>
                 @endforeach
             </table>
+        </article>
+
+        <article class="roomGrid" id={{ $room->id }}>
+
         </article>
 
         {{-- <article class="table  u-flex-center">

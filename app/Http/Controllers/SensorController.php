@@ -105,7 +105,7 @@ class SensorController extends Controller
     {        
         $request->session()->put('prev.url',url()->previous());
         Sensor::destroy($id);
-        return redirect($request->session()->get('prev.url'));
+        return redirect('rooms');
     }
     
 }

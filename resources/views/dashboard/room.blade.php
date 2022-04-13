@@ -42,10 +42,6 @@
             <a class="room__button" href="{{'/rooms/' . $room->id . '/sensor/create'}}">Add sensor</a>
         </section>
         @include('dashboard.roomPlan')
-
-
-
-
     </article>
 
 @else
