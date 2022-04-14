@@ -20,7 +20,7 @@
     
     /* Interactive elements */
     --primary-button: rgba(66, 165, 218, 0.342);
-    --primary-hover: #149be9;
+    --primary-hover: #90bfda;
     --secondary-button: rgba(230, 230, 230, 0.815);
     --secondary-hover: rgb(255, 255, 255);
 
@@ -43,7 +43,7 @@ html {
 /* page classes, used for <main> tags per page */
 
 .main {
-    width: 75%;
+    width: 100%;
     margin: 2rem auto;
     display: flex;
 
@@ -53,13 +53,18 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     margin: 2rem auto;
 
 }
 
-.main--create{
-    width: 75%;
+.main--edit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row;
+    margin: 2rem auto;
+    width: 50%;   
+    gap:2rem
 }
 
 /* Index CSS */
@@ -77,6 +82,7 @@ html {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
+    align-items: center;
     align-items: center;
     text-decoration: none;
     color: revert;
@@ -204,7 +210,6 @@ html {
     justify-content: stretch;
     align-items: stretch;
     gap: 2rem;
-    padding: 2rem;
     background-color: var(--main-bg);
     border-radius: 1rem;
 }
@@ -220,11 +225,11 @@ html {
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
-
-
+    color: #eee;
+    background-color: var(--dark-accent);
     width: 100%;
     max-width: 100%;
-    padding-left: 1rem;
+    padding: 1rem;
 
 }
 
@@ -232,7 +237,8 @@ html {
     display: flex;
     align-items: center;
     height: 100%;
-    width: 50%;
+    width: 100%;
+    padding-left: 2rem;
     
     font-size: 2.8rem;
 }
@@ -248,13 +254,13 @@ html {
     width: 100%;
 }
 
+.room__details{
+    padding: 2rem;
+}
+
 /* room extended view styling*/
-.room__detailed {
-    height: auto;
-    max-width: 60%;
-    border: 1px solid black;
-    margin: 6rem auto;
-    border-radius: 1rem;
+.room__details > * {
+    margin-bottom: 2rem;
 }
 
 
@@ -306,6 +312,10 @@ html {
 
 }
 
+.room__buttons--edit{
+    padding: 0 2rem;
+}
+
 .room__buttons--grid{
     justify-self: end;
 
@@ -326,8 +336,9 @@ html {
     border: none;
 }
 
-.grid__item-filled{
-    background-color: var(--safe-green);
+.room__button:hover{
+    background-color: var(--primary-hover);
+    box-shadow:0.1rem 0.1rem 2rem rgba(92, 201, 228, 0.616);
 }
 
 .room__button:visited,
@@ -336,9 +347,25 @@ html {
 }
 
 .room__button:hover{
-    background-color: var(--primary-hover);
 
 }
+
+.room__button--header{
+    background-color: #eee;
+    color: #111;
+}
+.room__button--hover{
+    box-shadow:0.1rem 1rem 2rem rgba(92, 201, 228, 0.616);
+    
+}
+
+
+
+.grid__item-filled{
+    background-color: var(--safe-green);
+}
+
+
 
 
 .roomcard__text {
@@ -381,10 +408,9 @@ html {
 
     height: 25%;
     width: 100%;
-
-    background-color: var(--dark-accent);
+    background-color: rgba(20, 87, 131, 0.308);
     font-size: 2.4rem;
-    color: #eeeeee;
+    color: black;
 }
 
 
@@ -494,7 +520,7 @@ html {
     display: flex;
     gap: 2rem;
     padding: 2rem;
-    width: 70%;
+    width: 50%;
     margin: 0 auto;
 
     flex-direction: column;
@@ -532,11 +558,15 @@ html {
 
 }
 
-.form__section:not(first) {
+.form__section:first {
     margin-top: 2rem;
+
+}
+
+.form__section{
     display: flex;
     flex-flow: column nowrap;
-
+    margin-bottom: 1rem;
 }
 
 .form__label {
@@ -584,6 +614,23 @@ html {
     grid-template-rows: repeat(10, minmax(0,1fr));
     width: 90%;
     margin: 2rem auto;
+}
+
+.form-grid--edit{
+    gap: 0;
+}
+
+.form-grid__item--sensor{ 
+    background-color: green;
+    z-index: 2;
+}
+
+.form-grid__item--furniture{
+    background-color: gray;
+}
+.form-grid__item--selected{
+    border: 0.1rem solid darkolivegreen;
+    background-color: #00FF66;
 }
 
 .form-grid > input[type='checkbox']{

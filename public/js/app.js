@@ -1,71 +1,61 @@
-function createGrid(loc, id) {
-    const grid = document.getElementsByClassName("room__grid")[id - 1];
+function createGrid(id, loc, layout) {
+    let grid = document.getElementsByClassName("room__grid")[id - 1];
     grid.style.display = "grid";
     let y = 0
-    while(y < 99){
+    while (y < 99) {
         let newDiv = document.createElement("div");
         newDiv.className = "grid__item";
+        newDiv.dataset.coordinate = y;
         grid.appendChild(newDiv)[y];
+
         y++;
     }
     // Call function to fill grid (if location array is not empty)
     if (loc !== []) {
-        gridFill(loc, id, grid);
+        gridFill(loc, id, layout);
     }
 }
 
 // grid verwijderen
-function deleteGrid(id) {
+function hideGrid(id) {
     let grid = document.getElementsByClassName("room__grid")[id - 1];
     grid.style.display = "none";
 }
 
-// Grid vullen met div'
-const room1 = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9,
-    11, 12, 13, 14, 15, 16, 17, 18, 19,
-    21, 22, 23, 24, 25, 26, 27, 28, 29,
-    81, 82, 83, 84, 85, 86, 87,
-    91, 92, 93, 94, 95, 96, 97]
-const room2 = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9,
-    11, 13, 14, 15, 16, 17,
-    21, 22, 23, 24, 25, 26, 27,
-    81, 82, 83, 84, 85,
-    91, 92, 93, 94, 95];
-const room3 = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9,
-    11, 12, 13, 14, 15, 16, 17, 18, 19,
-    21, 22, 23, 24, 25, 26, 27, 28, 29,
-    31, 32, 33, 34, 35, 36, 37, 38, 39,
-    81, 82, 83, 84, 85, 86, 87,
-    91, 92, 93, 94, 95, 96, 97];
-const roomArray = [room1, room2, room3];
 
-
-function gridFill(loc, id, grid) {
+function gridFill(loc, id, layout) {
+    let grid = document.getElementsByClassName("room__grid")[id - 1];
+    let gridItems = grid.children;
+    console.log(gridItems);
+    console.log(loc);
+    console.log(id);
+    console.log(layout);
     let x = 0;
-    roomLayout = roomArray[id - 1]; // bijv. room3 
+    let layoutArray = Array.from(layout);
+    // Assign furniture grid 
 
-    let sensorLocations = []
-    loc.forEach(sensor => {
-        sensorLocations.push(sensor.location);
+    // Loops through array retrieved from $room->layout
+    layoutArray.forEach(furnitureCoordinate =>{
+        for(let i = 0; i < gridItems.length ; i++){
+            if (gridItems[i].dataset.coordinate == furnitureCoordinate) {
+                gridItems[i].classList.add("grid__item--furniture")
+            }
+        }
     });
 
-    // Assign furniture grid items
-    for (i in roomLayout) {+
-        // meubelen 
-        grid.children[roomLayout[x]].classList.add("grid__item--furniture");
-        x++;
-    }
-    // Assign sensor grid items
-    sensorLocations.forEach(loc => {
-        grid.children[loc].classList.remove("grid__item--furniture");
-        grid.children[loc].classList.add("grid__item--sensor");
+    loc.forEach(sensorLocation => {
+        console.log("sensorloc: ",)
+        for(let i = 0; i < gridItems.length ; i++){
+            if (gridItems[i].dataset.coordinate == sensorLocation.location) {
+                gridItems[i].classList.remove("grid__item--furniture")
+                gridItems[i].classList.add("grid__item--sensor")
+            }
+
+        }
     });
+
 
 }
-
 // Confirmation dialog voor delete forms
 let deleteButtons = document.querySelectorAll("[value=Delete]");
 

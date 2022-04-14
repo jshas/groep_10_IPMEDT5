@@ -1,6 +1,6 @@
 @extends('baseview')
 @include('components.header')
-<main class="main main--create">
+<main class="main main--edit">
     <section class="form"> 
         <form class="form__form" action={{ "/rooms/" . $room->id. "/sensor"}} method="POST">   
             @csrf

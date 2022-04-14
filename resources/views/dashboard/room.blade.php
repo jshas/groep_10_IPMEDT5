@@ -15,9 +15,9 @@
         <header class="room__header">
             <h2 class="room__heading">{{ $room->name}}</h2>
             <section class="room__buttons room__buttons--edit">
-                <a class="room__button" href="{{'/rooms/' . $room->id . '/edit'}}">Edit</a>
-                <form jslabel={{ $room->name }} action="{{ url('/rooms', ['id' => $room->id]) }}" method="post">
-                    <input class="room__button" type="submit" value="Delete" />
+                <a class="room__button room__button--header" href="{{'/rooms/' . $room->id . '/edit'}}">Edit</a>
+                <form data-jslabel={{ $room->name }} action="{{ url('/rooms', ['id' => $room->id]) }}" method="post">
+                    <input class="room__button room__button--header" type="submit" value="Delete" />
                     @method('delete')
                     @csrf
                 </form>
@@ -49,9 +49,9 @@
         <header class="room__header">
             <h2 class="room__heading">{{ $room->name}}</h2>
             <section class="room__buttons room__buttons--edit">
-                <a class="room__button" href="{{'/rooms/' . $room->id . '/edit'}}">Edit</a>
+                <a class="room__button room__button--header" href="{{'/rooms/' . $room->id . '/edit'}}">Edit</a>
                 <form action="{{ url('/rooms', ['id' => $room->id]) }}" method="post">
-                    <input class="room__button" type="submit" value="Delete" />
+                    <input class="room__button room__button--header" type="submit" value="Delete" />
                     @method('delete')
                     @csrf
                 </form>

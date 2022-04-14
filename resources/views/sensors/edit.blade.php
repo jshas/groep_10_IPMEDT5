@@ -1,7 +1,23 @@
 @extends('baseview')
 @include('components.header')
-<main class="main">
+@section('additional-js-scripts')
+<script src="/js/editSensor.js" defer></script>
+@endsection
+
+<main class="main main--edit">
     <section class="form"> 
+        <section class="form__sensors">        
+            @switch($sensor->type)
+                @case('Temperature')
+                    @include('dashboard.sensor.temperature')
+                    @break        
+                @case('Flame') {{-- Has a 0 and 1 state in the DB. --}}
+                    @include('dashboard.sensor.flame')
+                    @break 
+                @default
+                    <h1>Unknown sensor type. Check DB </h1>     
+            @endswitch
+        </section>
         <form class="form__form" action={{ "/sensor/" . $sensor->id}} method="POST">  
             @method('patch') 
             @csrf
@@ -43,23 +59,20 @@
 
             {{-- Confirm button --}}
             <section class="form__section">
-                <button class="form__button type="submit">Add Sensor</button>
+                <button class="form__button type="submit">Edit Sensor</button>
             </section>
 
         </form>
-    </section>
-    <section class="form__sensors">        
-        @switch($sensor->type)
-            @case('Temperature')
-                @include('dashboard.sensor.temperature')
-                @break        
-            @case('Flame') {{-- Has a 0 and 1 state in the DB. --}}
-                @include('dashboard.sensor.flame')
-                @break 
-            @default
-                <h1>Unknown sensor type. Check DB </h1>     
-        @endswitch
-    </section>
-    <section class="room__buttons room__buttons--edit">
+
+    
+        </section>
+        <article class="form-grid form-grid--edit form-grid--visible" 
+        id="js--roomGrid" 
+        data-current-sensor="{{ $sensor->location }}"
+        data-room="{{ $sensor->room->layout }}" 
+        >
+            @for($i = 0; $i < 100; $i++)
+                <div data-coordinate={{ $i }} class="form-grid__item"></div>
+            @endfor
+        </article>
 </main>
-@include('components.sidebar')

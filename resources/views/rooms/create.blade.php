@@ -45,7 +45,7 @@
             </section> --}}
                 
             <section class="form__section">
-                <section class="form__description">
+                <section class="form__description"> 
                     <h3>Room grid editor</h3>
                     <p>Toggle the checkboxes to fill in a respresentation of your room contents, such as chairs or desks.
                     </p>
@@ -68,9 +68,7 @@
                             value={{ $i }}>
                         @endfor
                     </article>
-                    
             </section>
-
 
             <section class="form__section">
                 <button class="form__button" id="js--createFormSubmitButton" type="submit">Add Room</button>

@@ -12,8 +12,8 @@ class Sensor extends Model
     public $timestamps = false;
     use HasFactory;
 
-    public function Sensor(){
-        return $this->belongsTo(Room::class);   
+    public function room(){
+        return $this->belongsTo(Room::class, 'room_id', 'id');   
     }
     
     
