@@ -9,6 +9,10 @@ class Room extends Model
 {
     protected $table = 'rooms';
     public $timestamps = false;
+
+    // protected $casts = [
+    //     'layout' => 'json',
+    // ];
     
     // protected $primaryKey = 'name';
     // public $incrementing = true;

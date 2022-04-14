@@ -18,6 +18,7 @@ class CreateSensorsTable extends Migration
             $table->string('name')->default('North');
             $table->string('type');
             $table->foreignId('room_id');
+            $table->integer("value");
 
             // $table->string('room_name');
 

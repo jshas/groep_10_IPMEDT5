@@ -32,7 +32,7 @@
                 @endif    
             </section>
 
-            <section class="form__section">
+            {{-- <section class="form__section">
                 <label class="form__label" for="MQTT-Topic">MQTT Topic</label>
                 <input class="form__input  @error('MQTT-topic') form__input--error @enderror"  id="MQTT-Topic" placeholder="For example: basement" type="text" value="{{  old('MQTT-topic') }}">
                 @if ($errors->get('MQTT-topic'))
@@ -42,11 +42,13 @@
                         @endforeach
                     </section> 
                 @endif    
-            </section>
+            </section> --}}
                 
             <section class="form__section">
                 <section class="form__description">
-                    <p>Cycle through the types of squares to toggle type..</p>
+                    <h3>Room grid editor</h3>
+                    <p>Toggle the checkboxes to fill in a respresentation of your room contents, such as chairs or desks.
+                    </p>
                 </section>
                 <section class="form__buttons">
                     <button type="button" class="form__button" id="js--openCreateGrid">Open grid</button>
@@ -54,23 +56,24 @@
                     <button type="button" class="form__button" id="js--resetCreateGrid">Reset grid</button>
                 </section>
                     <article class="form-grid" id="js--roomGrid">
+                        <label for="layout[]" class="form-grid__label">Choose your room layout:</label>
                         @for ($i = 0; $i < 100; $i++)
-                            <label for="{{ 'js--gridItem' . $i  }}" class="form-grid__label"></label>
                             <input
                             type="checkbox"
                             class="form-grid__checkbox" 
                             id={{ 'js--gridItem-' . $i }} 
-                            name="roomLayout[]"
+                            name="layout[]"
                             data-status="empty"
                             data-coordinate={{ $i }}
-                            onClick="roomGridItemHandler(event.target)"></input>
+                            value={{ $i }}>
                         @endfor
                     </article>
+                    
             </section>
 
 
             <section class="form__section">
-                <button class="form__button" type="submit">Add Room</button>
+                <button class="form__button" id="js--createFormSubmitButton" type="submit">Add Room</button>
             </section>
         </form>
 

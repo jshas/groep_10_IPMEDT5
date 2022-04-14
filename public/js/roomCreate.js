@@ -8,16 +8,27 @@ const openGridCreateButton = document.getElementById("js--openCreateGrid");
 const closeGridCreateButton = document.getElementById("js--closeCreateGrid"); 
 const resetGridCreateButton = document.getElementById("js--resetCreateGrid"); 
 const formGridItems = document.getElementsByClassName("form-grid__checkbox");
-console.log(formGridItems);
+const form = document.getElementsByClassName("form__form")[0];
+console.log(form);
 
+const submitFormButton = document.getElementById('js--roomCreateSubmitButton');
+console.log(submitFormButton);
 
 // Empty Arrays to fill in on create page
 let sensorGridItems = [];
 let furnitureGridItems = [];
+let initFlag = false; // Used to reset the checkbox values if they persisted on reload.
+console.log(furnitureGridItems);
 
 /* form-grid buttons*/
 openGridCreateButton.addEventListener('click', (e) => {
     roomGrid.classList.add("form-grid--visible");
+    if(!initFlag){
+        for(let i = 0; i < formGridItems.length; i++){
+            formGridItems[i].checked = false;
+        }
+        initFlag = true;
+    }
 });
 
 closeGridCreateButton.addEventListener('click', (e) => {
@@ -56,7 +67,7 @@ function roomGridItemHandler(){
             console.log(formGridItem.id + " : furniture");
             formGridItem.dataset.status = 'empty';
             formGridItem.checked = false;
-            formGridItem.backgroundColor = none;
+            formGridItem.backgroundColor = 'none';
             for( let i = 0; i < furnitureGridItems.length; i++){ 
                 if ( furnitureGridItems[i] === coordinate) { 
                     furnitureGridItems.splice(i, 1); 

@@ -619,6 +619,7 @@ html {
     background-color: rgba(100, 139, 190, 0.45);
 }
 
+
 .form__alert {
     background-color: var(--danger-red);
     width: 100%;

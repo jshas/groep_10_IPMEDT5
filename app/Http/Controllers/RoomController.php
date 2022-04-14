@@ -40,11 +40,15 @@ class RoomController extends Controller
      */
     // , Room $room, RoomTopic $roomTopic
     public function store(Request $request){
+        $roomLayoutArray = [];
         $room = new Room;
         $validated = $request->validate([
             'name' => 'required|unique:rooms|max:40',
                 ]);
         $room->name = $validated['name'];
+        $layoutJson = json_encode($request->layout);
+        // $room->layout = $request->layout;
+        $room->layout = $layoutJson;
         $room->save();
         $request->session()->flash('message', 'Room added sucessfully!');
         return redirect('/rooms/create');
