@@ -11,6 +11,11 @@ use PhpMqtt\Client\Exceptions\MqttClientException;
 use PhpMqtt\Client\MqttClient;
 use Psr\Log\LogLevel;
 
+define('SQL_HOST','localhost');
+define('DB_USER',"laravel");
+define('DB_PASSWORD',"password");
+define('DB_NAME','laravel');
+
 
 // Create an instance of a PSR-3 compliant logger. For this example, we will also use the logger to log exceptions.
 $logger = new SimpleLogger(LogLevel::INFO);
@@ -19,27 +24,21 @@ try {
 
 
     // Create a new instance of an MQTT client and configure it to use the shared broker host and port.
-    $client = new MqttClient(MQTT_BROKER_HOST, MQTT_BROKER_PORT, 'test-subscriber', MqttClient::MQTT_3_1, null, $logger);
+    $client = new MqttClient(MQTT_BROKER_HOST, MQTT_BROKER_PORT, 'MqttSubscriber', MqttClient::MQTT_3_1, null, $logger);
 
     // Connect to the broker without specific connection settings but with a clean session.
     $client->connect(null, true);
 
 
-    // Subscribe to the topic 'hengseltest' using QoS 0.
-    $client->subscribe('hengseltest', function (string $topic, string $message, bool $retained) use ($logger, $client) {
+    // Subscribe to the topic 'livingroom/t1' using QoS 0.
+    $client->subscribe('livingroom/t1', function (string $topic, string $message, bool $retained) use ($logger, $client) {
         $logger->info('We received a {typeOfMessage} on topic [{topic}]: {message}', [
             'topic' => $topic,
             'message' => $message,
             'typeOfMessage' => $retained ? 'retained message' : 'message',
         ]);
 
-
-        $host = "localhost";
-        $db_user = "laravel";
-        $db_password = "password";
-        $db_name = "laravel";
-
-        $sqlconnect = mysqli_connect($host, $db_user, $db_password, $db_name);
+        $sqlconnect = mysqli_connect(SQL_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
         if($sqlconnect->connect_errno!=0){
             echo "Error\n";
@@ -48,12 +47,49 @@ try {
         echo "Connected with database!\n";
 
         // Prepare insert into database
-        $stmt = $sqlconnect->prepare("INSERT INTO sensorvalue (name, temperature) VALUES (?, ?)");
-
-        $stmt->bind_param("sd", $roomname, $temperatuur);
+        $stmt = $sqlconnect->prepare("INSERT INTO sensorvalue (room_topic, sensor_topic, value) VALUES (?, ?, ?)");
+        $stmt->bind_param("ssd", $roomname, $sensorname, $temperatuur);
 
         // set parameters and execute
-        $roomname = $topic;
+        $topicslice = explode("/",$topic);
+        $roomname = $topicslice[0];
+        $sensorname = $topicslice[1];
+        $temperatuur = $message;
+        $stmt->execute();
+
+        // Close connection
+        mysqli_stmt_close($stmt);
+
+        // After receiving the first message on the subscribed topic, we want the client to stop listening for messages.
+        // $client->interrupt();
+    }, MqttClient::QOS_AT_MOST_ONCE);
+
+
+
+    // Subscribe to the topic 'livingroom/t2' using QoS 0.
+    $client->subscribe('livingroom/t2', function (string $topic, string $message, bool $retained) use ($logger, $client) {
+        $logger->info('We received a {typeOfMessage} on topic [{topic}]: {message}', [
+            'topic' => $topic,
+            'message' => $message,
+            'typeOfMessage' => $retained ? 'retained message' : 'message',
+        ]);
+
+        $sqlconnect = mysqli_connect(SQL_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+        if($sqlconnect->connect_errno!=0){
+            echo "Error\n";
+        }
+
+        echo "Connected with database!\n";
+
+        // Prepare insert into database
+        $stmt = $sqlconnect->prepare("INSERT INTO sensorvalue (room_topic, sensor_topic, value) VALUES (?, ?, ?)");
+        $stmt->bind_param("ssd", $roomname, $sensorname, $temperatuur);
+
+        // set parameters and execute
+        $topicslice = explode("/",$topic);
+        $roomname = $topicslice[0];
+        $sensorname = $topicslice[1];
         $temperatuur = $message;
         $stmt->execute();
 
