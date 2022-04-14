@@ -2,7 +2,8 @@
 @section('title', 'Edit ' . $room->name .  ' Room')
 @include('components.header')
 <main class="main main--edit">
-    <article class="form u-flex-center">
+
+    <article class="form u-flex-center"  data-previous-layout={{ $room }}>
         {{-- <form class="form__form" action="{{ route('rooms.update' , $room->id) }}" method="POST"> --}}
         <form class="form__form" action="/rooms/{{ $room->id }}"  method="POST">
             @csrf
@@ -21,6 +22,34 @@
                     </section>
                 @endif    
             </section>
+
+            <section class="form__section">
+                <section class="form__description"> 
+                    <h3>Room grid editor</h3>
+                    <p>Toggle the checkboxes to fill in a respresentation of your room contents, such as chairs or desks.
+                    </p>
+                </section>
+                <section class="form__buttons">
+                    <button type="button" class="form__button" id="js--openCreateGrid">Open grid</button>
+                    <button type="button" class="form__button" id="js--closeCreateGrid">Close grid</button>
+                    <button type="button" class="form__button" id="js--resetCreateGrid">Reset grid</button>
+                </section>
+
+                    <article class="form-grid" id="js--roomGrid">
+                        <label for="layout[]" class="form-grid__label">Choose your room layout:</label>
+                        @for ($i = 0; $i < 100; $i++)
+                            <input
+                            type="checkbox"
+                            class="form-grid__checkbox" 
+                            id={{ 'js--gridItem-' . $i }} 
+                            name="layout[]"
+                            data-status="empty"
+                            data-coordinate={{ $i }}
+                            value={{ $i }}>
+                        @endfor
+                    </article>
+            </section>
+            
 
 
 
@@ -42,6 +71,12 @@
             </table>
         </article>
 
+
+
     </article>
 </main>
 @include('components.sidebar')
+@section('additional-js-scripts')
+    <script src="/js/createRoom.js" defer></script>
+    <script src="/js/editRoom.js" defer></script>
+@endsection

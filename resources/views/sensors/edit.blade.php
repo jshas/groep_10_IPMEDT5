@@ -72,7 +72,7 @@
         data-room="{{ $sensor->room->layout }}" 
         >
             @for($i = 0; $i < 100; $i++)
-                <div data-coordinate={{ $i }} class="form-grid__item"></div>
+                <div data-coordinate={{ $i }} class="form-grid__item form-grid__item--interactive"></div>
             @endfor
         </article>
 </main>

@@ -195,7 +195,7 @@ html {
 .room-section {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
+    gap: 3rem;
     width: 75%;
     margin: 2rem auto;
     height: 100%;
@@ -212,6 +212,9 @@ html {
     gap: 2rem;
     background-color: var(--main-bg);
     border-radius: 1rem;
+
+    box-shadow: 0.2rem 0.2rem 2rem rgba(11, 11, 11, 0.5);
+    
 }
 
 .room--alert {
@@ -242,7 +245,16 @@ html {
     
     font-size: 2.8rem;
 }
+.room__heading--small {
+    font-size: 2rem;
+    width: 100%;
+}
 
+.room__description{
+    font-size: 1.6rem;
+    font-style: italic;
+    padding-left: 2rem;
+}
 /* The container in which the room-sensors are displayed. */
 .room__sensors {
     /* Room -> Sensors */
@@ -317,7 +329,7 @@ html {
 }
 
 .room__buttons--grid{
-    justify-self: end;
+    /* justify-self: end; */
 
 }
 
@@ -481,6 +493,10 @@ html {
 
 }
 
+.room__details{
+    background-color: var(--sensor-bg);
+}
+
 /* card styling */
 .room__card {
     display: block;
@@ -624,6 +640,14 @@ html {
     background-color: green;
     z-index: 2;
 }
+.form-grid__item--interactive{
+    cursor: pointer;
+}
+
+.form-grid__item--interactive:hover{
+    background-color: var(--primary-button);
+}
+
 
 .form-grid__item--furniture{
     background-color: gray;

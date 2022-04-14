@@ -55,7 +55,10 @@ resetGridCreateButton.addEventListener('click', (e) => {
 // For the create room grid
 function roomGridItemHandler(){
     let formGridItem = event.target;
-    let coordinate = formGridItem.dataset.coordinate;
+    if(coordinate=null){
+        let coordinate = formGridItem.dataset.coordinate;
+    }
+
     switch(formGridItem.dataset.status){
         case 'empty': // If the formGridItem is an empty square, we want the gridItem to become a sensor.
             formGridItem.dataset.status = 'furniture';

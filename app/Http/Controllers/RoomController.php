@@ -73,7 +73,8 @@ class RoomController extends Controller
     public function edit(Room $room)
     {
         return view('rooms.edit')
-            ->with('room', $room);
+            ->with(['room' => $room, 'location' => $room->location]);
+                
     }
 
     /**
@@ -86,10 +87,19 @@ class RoomController extends Controller
     public function update(Request $request, $id)
     {
         $room = Room::findOrFail($id);
+        $previousName = $room->name;
         $validated = $request->validate([
-            'name' => 'required|unique:rooms|max:40',
+            'name' => 'unique:rooms|max:40',
                 ]);
-        $room->name = $validated['name'];
+        if($validated['name'] != ''){
+            $room->name = $validated['name'];
+        }else{
+            $room->name = $previousName;
+        }
+        if($request->layout != []){
+            $layoutJson = json_encode($request->layout);
+            $room->layout = $layoutJson;
+        }
         $room->save();
         return redirect('rooms')->withSuccess(__('User updated successfully.'));
     }
