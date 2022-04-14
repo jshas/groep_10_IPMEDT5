@@ -15,7 +15,7 @@ class RoomTopicSeeder extends Seeder
     public function run()
     {
         DB::table('room_topics')->insert([
-            'topic' => 'bedroom',
+            'topic' => 'Bedroom',
         ]); 
 
         DB::table('room_topics')->insert([

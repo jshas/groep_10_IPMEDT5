@@ -1,6 +1,9 @@
 @extends('baseview')
 @section('title', 'Create Room')
 @section('subheading', 'Add Room' )
+@section('additional-js-scripts')
+    <script src="/js/roomCreate.js" defer></script>
+@endsection
 @include('components.header')
 @include('components.sidebar')
 
@@ -29,7 +32,7 @@
                 @endif    
             </section>
 
-            {{-- <section class="form__section">
+            <section class="form__section">
                 <label class="form__label" for="MQTT-Topic">MQTT Topic</label>
                 <input class="form__input  @error('MQTT-topic') form__input--error @enderror"  id="MQTT-Topic" placeholder="For example: basement" type="text" value="{{  old('MQTT-topic') }}">
                 @if ($errors->get('MQTT-topic'))
@@ -39,8 +42,7 @@
                         @endforeach
                     </section> 
                 @endif    
-            </section> --}}
-
+            </section>
                 
             <section class="form__section">
                 <section class="form__description">
@@ -51,17 +53,19 @@
                     <button type="button" class="form__button" id="js--closeCreateGrid">Close grid</button>
                     <button type="button" class="form__button" id="js--resetCreateGrid">Reset grid</button>
                 </section>
-                <article class="form-grid" id="js--roomGrid">
-                    @for ($i = 0; $i < 100; $i++)
-                        <div 
-                        class="form-grid__item" 
-                        id={{ 'js--grid-item-' . $i }} 
-                        data-status="empty"
-                        data-coordinate={{ $i }}
-                        onClick="formGridItemHandler(event.target)"></div>
-
-                    @endfor
-                </article>
+                    <article class="form-grid" id="js--roomGrid">
+                        @for ($i = 0; $i < 100; $i++)
+                            <label for="{{ 'js--gridItem' . $i  }}" class="form-grid__label"></label>
+                            <input
+                            type="checkbox"
+                            class="form-grid__checkbox" 
+                            id={{ 'js--gridItem-' . $i }} 
+                            name="roomLayout[]"
+                            data-status="empty"
+                            data-coordinate={{ $i }}
+                            onClick="roomGridItemHandler(event.target)"></input>
+                        @endfor
+                    </article>
             </section>
 
 
