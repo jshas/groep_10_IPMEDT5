@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Room;
-use DB; 
 use App\Models\SensorMessage;
+use DB; 
 
 class Sensor extends Model
 {
@@ -18,13 +18,14 @@ class Sensor extends Model
         return $this->belongsTo(Room::class, 'room_id', 'id');   
     }
 
-    public function message(){
-        $latestValue = DB::table('sensor_messages')->where('')
-        
+    public function messages(){
+        return $this->hasMany(SensorMessage::Class, 'sensor_topic', 'topic');
     }
 
+    public function latestMessage(){
 
-    $sensor->
-    
+        return $this->hasOne(SensorMessage::class, 'sensor_topic', 'topic');
+        
+    }
     
 }

@@ -38,6 +38,7 @@ class SensorController extends Controller
         $sensor->name = $validated['name'];
         $sensor->type = $validated['type'];
         $sensor->room_id = $room['id'];
+        $sensor->topic = $validated['topic'];
         $sensor->location = $validated['location'];
         
         // dd($sensor);
@@ -86,10 +87,12 @@ class SensorController extends Controller
         $validated = $request->validate([
             'name' => 'required|unique:rooms|max:40',
             'type' => 'required',
+            'topic' => 'required|unique:sensor',
             'location' => 'required|min:0|max:99',
                 ]);
         $sensor->name = $request['name'];
         $sensor->type = $request['type'];
+        $sensor->topic = $request['topic'];
         $sensor->location = $request['location'];
         $sensor->save();
         return redirect('rooms');

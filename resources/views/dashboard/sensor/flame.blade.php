@@ -1,3 +1,4 @@
+
 @if($sensor-> value == 0) {{--  No fire detected. --}}
 <article class="sensor" data-type="flame">
     <h3 class= "sensor__name"> {{$sensor->name}}</h3>
@@ -15,7 +16,7 @@
 
 </article>
 
-@elseif($sensor->value==1) {{--  Fire detected. This is not fine. --}}
+@elseif($sensor->value>=0) {{--  Fire detected. This is not fine. --}}
 <article class="sensor sensor--alert" data-type="flame">
     <h3 class= "sensor__name"> {{$sensor->name}}</h3>
     <section class="sensor__readout">
@@ -29,7 +30,9 @@
         </section>
     </section>
     @include('dashboard.sensor.editSection')
+
 </article>
+
 
 @else {{--  Incorrect value. --}}
 <article class="sensor" data-type="flame">
