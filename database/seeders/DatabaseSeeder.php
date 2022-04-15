@@ -18,5 +18,5 @@ class DatabaseSeeder extends Seeder
             SensorSeeder::class,
             // SensorMessageSeeder::class,
         ]);
-    }
+    }   
 }
