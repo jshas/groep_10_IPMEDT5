@@ -5,7 +5,7 @@
         $sensorValue = $sensorArray[0];
 @endphp
 
-@if($sensor-> value == 0) {{--  No fire detected. --}}
+@if($sensorValue == 0) {{--  No fire detected. --}}
 <article class="sensor" data-type="flame">
     <h3 class= "sensor__name sensor__name--warning">{{ $sensor->name . " (" . $sensor->topic . ")"}}</h3>
     <section class="sensor__readout">
