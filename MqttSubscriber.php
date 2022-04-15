@@ -6,6 +6,7 @@ require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/shared/config.php';
 require __DIR__ . '/shared/SimpleLogger.php';
 
+use PhpMqtt\Client\ConnectionSettings;
 use PhpMqtt\Client\Examples\Shared\SimpleLogger;
 use PhpMqtt\Client\Exceptions\MqttClientException;
 use PhpMqtt\Client\MqttClient;
@@ -26,8 +27,12 @@ try {
     // Create a new instance of an MQTT client and configure it to use the shared broker host and port.
     $client = new MqttClient(MQTT_BROKER_HOST, MQTT_BROKER_PORT, 'MqttSubscriber', MqttClient::MQTT_3_1, null, $logger);
 
+    $connectionSettings = (new ConnectionSettings)
+        ->setUsername(AUTHORIZATION_USERNAME)
+        ->setPassword(AUTHORIZATION_PASSWORD);
+
     // Connect to the broker without specific connection settings but with a clean session.
-    $client->connect(null, true);
+    $client->connect($connectionSettings, true);
 
 
     // Subscribe to the topic 'livingroom/t1' using QoS 0.
@@ -47,14 +52,18 @@ try {
         echo "Connected with database!\n";
 
         // Prepare insert into database
-        $stmt = $sqlconnect->prepare("INSERT INTO sensorvalue (room_topic, sensor_topic, value) VALUES (?, ?, ?)");
-        $stmt->bind_param("ssd", $roomname, $sensorname, $temperatuur);
+        $stmt = $sqlconnect->prepare("INSERT INTO sensorvalue (room_topic, sensor_topic, IRvalue, TEMPvalue) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssdd", $roomname, $sensorname, $IRvalue, $TEMPvalue);
 
         // set parameters and execute
         $topicslice = explode("/",$topic);
         $roomname = $topicslice[0];
         $sensorname = $topicslice[1];
-        $temperatuur = $message;
+
+        $values = explode("/",$message);
+        $IRvalue = $values[0];
+        $TEMPvalue = $values[1];
+
         $stmt->execute();
 
         // Close connection
@@ -63,8 +72,6 @@ try {
         // After receiving the first message on the subscribed topic, we want the client to stop listening for messages.
         // $client->interrupt();
     }, MqttClient::QOS_AT_MOST_ONCE);
-
-
 
     // Subscribe to the topic 'livingroom/t2' using QoS 0.
     $client->subscribe('livingroom/t2', function (string $topic, string $message, bool $retained) use ($logger, $client) {
@@ -83,14 +90,18 @@ try {
         echo "Connected with database!\n";
 
         // Prepare insert into database
-        $stmt = $sqlconnect->prepare("INSERT INTO sensorvalue (room_topic, sensor_topic, value) VALUES (?, ?, ?)");
-        $stmt->bind_param("ssd", $roomname, $sensorname, $temperatuur);
+        $stmt = $sqlconnect->prepare("INSERT INTO sensorvalue (room_topic, sensor_topic, IRvalue, TEMPvalue) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssdd", $roomname, $sensorname, $IRvalue, $TEMPvalue);
 
         // set parameters and execute
         $topicslice = explode("/",$topic);
         $roomname = $topicslice[0];
         $sensorname = $topicslice[1];
-        $temperatuur = $message;
+
+        $values = explode("/",$message);
+        $IRvalue = $values[0];
+        $TEMPvalue = $values[1];
+
         $stmt->execute();
 
         // Close connection
@@ -100,6 +111,7 @@ try {
         // $client->interrupt();
     }, MqttClient::QOS_AT_MOST_ONCE);
 
+    
 
     // Since subscribing requires to wait for messages, we need to start the client loop which takes care of receiving,
     // parsing and delivering messages to the registered callbacks. The loop will run indefinitely, until a message

@@ -24,7 +24,8 @@ class CreateSensorvalueTable extends Migration
             $table->string('sensor_topic');
 
             // value van de message
-            $table->float('value')->default(0); // flame = 0,1 temperature = [0 ... n]
+            $table->float('IRvalue')->default(0); // flame = 0,1 temperature = [0 ... n]
+            $table->float('TEMPvalue')->default(0);
         });
     }
 
