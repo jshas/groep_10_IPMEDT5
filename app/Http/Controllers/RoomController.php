@@ -73,7 +73,7 @@ class RoomController extends Controller
     public function edit(Room $room)
     {
         return view('rooms.edit')
-            ->with(['room' => $room, 'location' => $room->location]);
+            ->with(['room' => $room]);
                 
     }
 

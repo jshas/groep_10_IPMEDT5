@@ -3,7 +3,7 @@
 @include('components.header')
 <main class="main main--edit">
 
-    <article class="form u-flex-center"  data-previous-layout={{ $room }}>
+    <article class="form u-flex-center"  data-room={{$room }}>
         {{-- <form class="form__form" action="{{ route('rooms.update' , $room->id) }}" method="POST"> --}}
         <form class="form__form" action="/rooms/{{ $room->id }}"  method="POST">
             @csrf
@@ -45,14 +45,12 @@
                             name="layout[]"
                             data-status="empty"
                             data-coordinate={{ $i }}
-                            value={{ $i }}>
-                        @endfor
+                            value={{ $i }}
+                            checked="" >
+                    @endfor
                     </article>
             </section>
             
-
-
-
             <section class="form__section">
                 <button class="form__button type="submit"}>Edit Room</button>
 
@@ -77,6 +75,9 @@
 </main>
 @include('components.sidebar')
 @section('additional-js-scripts')
+<script defer> 
+    let currentRoom = {{ Js::from($room) }};
+</script>
     <script src="/js/createRoom.js" defer></script>
     <script src="/js/editRoom.js" defer></script>
 @endsection

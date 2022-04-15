@@ -680,7 +680,15 @@ html {
     transition: 0.2s background-color linear;
 }
 
+.form-grid__checkbox[status="furniture"]{
+    background-color: gray;
+}
+
+
 .form-grid__checkbox:checked{
+    background-color: gray;
+}
+.form-grid__checkbox--checked{
     background-color: gray;
 }
 
@@ -728,9 +736,6 @@ html {
     cursor: pointer;
 }
 
-
-
-
 /* Utility */
 
 /* utility classes */
@@ -751,6 +756,13 @@ html {
 
 /* Media query */
 @media only screen and (max-width: 40rem) {
+    .main--edit{
+        width: 90%;
+    }
+    .form{
+        width: 100%;
+
+    }
     .page-header__img {
         display: none;
     }
@@ -759,13 +771,15 @@ html {
 
 @media only screen and (max-width: 64rem) {
 
+    
     .main{
-        width: 50%;
+        width: 85%;
         flex-direction: column;
         margin-bottom:10vh;
     }
     
     .room-section {
+        width: 100%;
         min-height: 100%;
     }
 
@@ -821,9 +835,7 @@ html {
         font-size: 1rem;
     }
 
-    .room-section {
-        width: 100%;
-    }
+   
 
 }
 
@@ -831,11 +843,11 @@ html {
 @media only screen and (max-width: 89rem) {
 
     .form{
-        width: 100%;
+        width: 60%;
     }
 
    .main{
-        width: 75%;
+        width: 100%;
     }
 
     .room-section {

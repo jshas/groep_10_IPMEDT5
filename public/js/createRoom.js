@@ -39,7 +39,6 @@ resetGridCreateButton.addEventListener('click', (e) => {
     if(window.confirm("Are you sure you want to reset the grid?")){
         console.log(formGridItems.length)
         console.log("ok")
-
         for(let i = 0; i < formGridItems.length; i++){
             formGridItems[i].dataset.status = 'empty';
             formGridItems[i].checked = false;
@@ -64,12 +63,15 @@ function roomGridItemHandler(){
             formGridItem.dataset.status = 'furniture';
             formGridItem.checked = true;
             furnitureGridItems.push(coordinate);
+            formGridItems.style.backgroundColor = 'gray';
+            formGridItems[i].classList.add("form-grid__checkbox--checkbox");
             console.log("FurnitureItems", furnitureGridItems);
             break;
         case 'furniture': // If the formGridItem is a furniture square, we want the gridItem to become empty again.
             console.log(formGridItem.id + " : furniture");
             formGridItem.dataset.status = 'empty';
             formGridItem.checked = false;
+            formGridItems[i].classList.remove("form-grid__checkbox--checkbox");
             formGridItem.backgroundColor = 'none';
             for( let i = 0; i < furnitureGridItems.length; i++){ 
                 if ( furnitureGridItems[i] === coordinate) { 

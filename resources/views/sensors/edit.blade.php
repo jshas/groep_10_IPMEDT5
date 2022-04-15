@@ -22,7 +22,7 @@
             @method('patch') 
             @csrf
             {{-- Form Description --}}
-            <h2 class="form__heading">Edit {{ $sensor-> name }} ({{ $sensor->type }}) </h2>
+            <h2 class="form__heading">Edit {{ $sensor->name }} ({{ $sensor->type }}) </h2>
             <section class="form__description">
                 <p class="form__text">Sensor associated with the {{ $sensor->room_name}} group.  </p>
                 <p class="form__text">This form is used to edit an existing sensor.</p>

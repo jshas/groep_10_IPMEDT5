@@ -1,32 +1,45 @@
 // All input checkboxes from createRoom scipt
 // This script is used to pre-fill the input checkboxes
-const previousLayoutArray = document.getElementsByClassName("form")[0].dataset.previousLayout;
-z
+let layout = currentRoom['layout'];
+console.log(layout);
+layoutArray = JSON.parse(layout);
+console.log("layoutarray", layoutArray);
+// let formGridItems = document.querySelectorAll([".form-grid__item"]);    
 
-function roomGridItemHandler(){
-    let formGridItem = event.target;
-    if(coordinate=null){
-        let coordinate = formGridItem.dataset.coordinate;
+
+
+
+resetGridCreateButton.addEventListener('click', (e) => {
+    if(window.confirm("Are you sure you want to reset the grid?")){
+        console.log(formGridItems.length)
+        console.log("ok")
+        for(let i = 0; i < formGridItems.length; i++){
+            formGridItems[i].dataset.status = 'empty';
+            formGridItems[i].checked = false;
+
+            // Empties out the arrays
+            sensorGridItems.splice(0, sensorGridItems.length)
+            furnitureGridItems.splice(0, furnitureGridItems.length)
+        }
+
     }
 
-    switch(formGridItem.dataset.status){
-        case 'empty': // If the formGridItem is an empty square, we want the gridItem to become a sensor.
-            formGridItem.dataset.status = 'furniture';
-            formGridItem.checked = true;
-            furnitureGridItems.push(coordinate);
-            console.log("FurnitureItems", furnitureGridItems);
-            break;
-        case 'furniture': // If the formGridItem is a furniture square, we want the gridItem to become empty again.
-            console.log(formGridItem.id + " : furniture");
-            formGridItem.dataset.status = 'empty';
-            formGridItem.checked = false;
-            formGridItem.backgroundColor = 'none';
-            for( let i = 0; i < furnitureGridItems.length; i++){ 
-                if ( furnitureGridItems[i] === coordinate) { 
-                    furnitureGridItems.splice(i, 1); 
-                }
-            }
-            console.log("FurnitureItems", furnitureGridItems);
-            break;
+});
+
+console.log(formGridItems);
+
+function populateEditFormGrid(){
+    for(let i=0; i < layoutArray.length; i++){
+        layoutArray[i]
+        console.log(layoutArray[i])
+        formGridItems[layoutArray[i]].dataset.status = 'furniture';
+        formGridItems[layoutArray[i]].checked = true;
+        formGridItems[layoutArray[i]].style.backgroundColor = 'gray';
+        formGridItems[layoutArray[i]].classList.add = 'form-grid__checkbox--checked';
+        furnitureGridItems.push(layoutArray[i]);
+
     }
-};
+    console.log("FurnitureItems", furnitureGridItems);
+}
+
+populateEditFormGrid();
