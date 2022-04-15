@@ -15,11 +15,11 @@ class SmsController extends Controller
         $rooms = \App\Models\Room::with('sensors')->get();
 
         if($sms_count-> count <= 2) {
-            // Nexmo::message()->send([
-            //     'to' => '31613013763',
-            //     'from' => '31613013763',
-            //     'text' => 'Brand Gedetecteerd!!!'
-            // ]);
+            Nexmo::message()->send([
+                'to' => '31613013763',
+                'from' => '31613013763',
+                'text' => 'Brand Gedetecteerd!!!'
+            ]);
             $affected = DB::table('sms_counting')
               ->update(['count' => $sms_count->count + 1]);
 
@@ -29,11 +29,11 @@ class SmsController extends Controller
             echo "<script>setTimeout(function(){ window.location.href = '/'; }, 5000);</script>";
         } 
         if($sms_count-> count == 3) {
-            // Nexmo::message()->send([
-            //     'to' => '31613013763',
-            //     'from' => '31613013763',
-            //     'text' => 'Er zijn nu al 3 sms'jes verstuurd. Vergeet niet op de reset knop te drukken als je weer sms'jes wilt ontvangen.'
-            // ]);
+            Nexmo::message()->send([
+                'to' => '31613013763',
+                'from' => '31613013763',
+                'text' => 'Er zijn nu al 3 sms'jes verstuurd. Vergeet niet op de reset knop te drukken als je weer sms'jes wilt ontvangen.'
+            ]);
             $affected = DB::table('sms_counting')
               ->update(['count' => $sms_count->count + 1]);
 
