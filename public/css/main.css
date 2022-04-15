@@ -304,6 +304,9 @@ html {
 .grid__item--furniture{
     background-color: gray;
 }
+.grid__item--previousFurniture{
+    background-color: #ddd;
+}
 
 
 

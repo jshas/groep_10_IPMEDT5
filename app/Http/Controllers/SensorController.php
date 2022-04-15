@@ -33,14 +33,14 @@ class SensorController extends Controller
         $validated = $request->validate([
             'name' => 'required|unique:rooms|max:40',
             'type' => 'required',
-            'topic' => 'required|unique:sensors',
+            // 'topic' => 'required|unique:sensors',
             'location' => 'min:0|max:99',
                 ]);
         dd($validated);
                 $sensor->name = $validated['name'];
         $sensor->type = $validated['type'];
         $sensor->room_id = $room['id'];
-        $sensor->topic = $validated['topic'];
+        // $sensor->topic = $validated['topic'];
         $sensor->location = $validated['location'];
         
         // dd($sensor);
@@ -97,14 +97,13 @@ class SensorController extends Controller
                 ]);
         $sensor->name = $validated['name'];
         $sensor->type = $validated['type'];
-        dd($validated);
-        if($request['topic'] == []){
-            $sensor->topic = $previousTopic;
-        }
+        // if($request['topic'] == []){
+        //     $sensor->topic = $previousTopic;
+        // }
         if($request['name'] == []){
             $sensor->name = $previousTopic;
         }
-        $sensor->topic = $validated['topic'];
+        $sensor->topic = $previousTopic;
         $sensor->location = $request['location'];
         $sensor->save();
         return redirect('rooms');
