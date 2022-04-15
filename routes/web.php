@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SmsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SensorController;
@@ -26,6 +27,10 @@ Route::resource('rooms.sensor', SensorController::class)->except([
 
 Route::redirect('/', '/rooms/', 301);
 
+Route::get('/sms', [SmsController::class, 'index']);
+
+// Deze route zorgt ervoor dat de smscontroller update functie wordt aangesproken. Dit reset de database van sms_couting.
+Route::get('/reset', [SmsController::class, 'update']);
 
 
 

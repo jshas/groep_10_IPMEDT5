@@ -17,6 +17,21 @@ class RoomController extends Controller
      */
     public function index(){
         $rooms = Room::with('sensors')->orderBy('id')->get();
+        
+        $sensors = \App\Models\Sensor::all();
+
+        // Kijk of er een abnormale waarde is. Als dat zo is ga dan naar de fire functie waar alles wordt nagekeken.
+        // Bij geen abnormale waardes return dan de homepagina.
+        foreach($sensors as $sensor) {
+            $sensorArray = $sensor->messages->sortByDesc('id')->take(1)->pluck('value');
+            $sensorValue = 0;
+            if(count($sensorArray) > 0) {
+                $sensorValue = $sensorArray[0];
+            }
+            if($sensorValue >= 50 or $sensorValue == 1) {
+                return $this->fire();
+            }
+        }
         // echo $rooms;
         return view('rooms.index', ['rooms' => $rooms]);
     }
@@ -74,6 +89,8 @@ class RoomController extends Controller
         return view('rooms.edit')
             ->with(['room' => $room]);
                 
+
+        return view('dashboard', ['rooms' => $rooms]);
     }
 
     /**
@@ -113,6 +130,105 @@ class RoomController extends Controller
     {
         Room::destroy($id);
         return redirect('rooms');
+    }
+
+    public function fire(){
+        // Maken van variabelen om het leven makkelijker te maken
+        // Twee soorten variabelen Temperatuur & Infrarood
+        $temperature_sensors = \App\Models\Sensor::where("type", "Temperature")->get();
+        $temp_name = "";
+        $temp_room_name = "";
+
+        $flame_sensors = \App\Models\Sensor::where("type", "Flame")->get();
+        $flame_name = "";
+        $flame_room_name = "";
+
+        $sensorArray = $sensor->messages->sortByDesc('id')->take(1)->pluck('value');
+            $sensorValue = 0;
+            if(count($sensorArray) > 0) {
+                $sensorValue = $sensorArray[0];
+            }
+
+        // Voor elke soort sensor loopen we door alle mogelijkheden heen
+        foreach($temperature_sensors as $temp){
+            $sensorArray = $temp->messages->sortByDesc('id')->take(1)->pluck('value');
+            $tempSensorValue = 0;
+            if(count($sensorArray) > 0) {
+                $tempSensorValue = $sensorArray[0];
+            }
+            // Voorwaarde voor de eerste sensor
+            if($tempSensorValue >= 50){
+                // Namen opslaan van locatie en naam van de kamer
+                $temp_name = $temp->name;
+                $temp_room_name = $temp->room_name;
+                // Loopen door de tweede sensor
+                foreach($flame_sensors as $flame){
+                    $sensorArray = $flame->messages->sortByDesc('id')->take(1)->pluck('value');
+                    $flameSensorValue = 0;
+                    if(count($sensorArray) > 0) {
+                        $flameSensorValue = $sensorArray[0];
+                    }
+                    // Als de locatie en de naam van de kamer van beide sensoren gelijk zijn ga verder
+                    if($flame->name == $temp_name && $flame->room_name == $temp_room_name){
+                        // Voorwaarde voor de tweede sensor
+                        if($flameSensorValue == 1){
+                            // Ga naar /sms om een sms te sturen
+                            return redirect('/sms');
+                        }
+                    }        
+                }
+            }
+        }
+        foreach($flame_sensors as $flame){
+            $sensorArray = $flame->messages->sortByDesc('id')->take(1)->pluck('value');
+            $flameSensorValue = 0;
+            if(count($sensorArray) > 0) {
+                $flameSensorValue = $sensorArray[0];
+            }
+            // Voorwaarde voor de eerste sensor
+            if($flameSensorValue == 1){
+                // Namen opslaan van locatie en naam van de kamer
+                $flame_name = $flame->name;
+                $flame_room_name = $flame->room_name;
+                // Loopen door de tweede sensor
+                foreach($temperature_sensors as $temp){
+                    $sensorArray = $temp->messages->sortByDesc('id')->take(1)->pluck('value');
+                    $tempSensorValue = 0;
+                    if(count($sensorArray) > 0) {
+                        $tempSensorValue = $sensorArray[0];
+                    }
+                    // Als de locatie en de naam van de kamer van beide sensoren gelijk zijn ga verder
+                    if($flame->name == $temp_name && $flame->room_name == $temp_room_name){
+                        // Voorwaarde voor de tweede sensor
+                        if($tempSensorValue >= 50){
+                            // Ga naar /sms om een sms te sturen
+                            return redirect('/sms');
+                        }
+                    }        
+                }
+            }
+        }
+
+
+
+        // // Precies hetzelfde als de eerste, maar hier zijn de sensoren omgedraait
+        // foreach($flame_sensors as $flame){
+        //     if($flame->value == 1){
+        //         $flame_name = $flame->name;
+        //         $flame_room_name = $flame->room_name;
+        //         foreach($temperature_sensors as $temp){
+        //             if($temp-> name == $flame_name && $temp->room_name == $flame_room_name){
+        //                 if($temp->value >= 50){
+        //                     return redirect('/sms');
+        //                 }
+        //             }
+        //         }
+        //     }
+
+        // }
+        // Nadat alles is nagekeken en er geen vuur is gedetecteerd wordt de homepagina weergegeven.
+        $rooms = Room::with('sensors')->get();
+        return view('dashboard', ['rooms' => $rooms]);
     }
 }
 

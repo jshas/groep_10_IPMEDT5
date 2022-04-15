@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             RoomSeeder::class,
             SensorSeeder::class,
             SensorMessageSeeder::class,
+            SmsCountingSeeder::class,
         ]);
     }   
 }
