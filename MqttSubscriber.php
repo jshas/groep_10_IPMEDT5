@@ -13,15 +13,17 @@ use PhpMqtt\Client\MqttClient;
 use Psr\Log\LogLevel;
 
 define('SQL_HOST','localhost');
-define('DB_USER',"laravel_user");
-define('DB_PASSWORD',"firstuser");
-define('DB_NAME','IPMEDT5_FD');
+define('DB_USER',"laravel");
+define('DB_PASSWORD',"password");
+define('DB_NAME','laravel');
 
 
 // Create an instance of a PSR-3 compliant logger. For this example, we will also use the logger to log exceptions.
 $logger = new SimpleLogger(LogLevel::INFO);
 
 try {
+
+
     // Create a new instance of an MQTT client and configure it to use the shared broker host and port.
     $client = new MqttClient(MQTT_BROKER_HOST, MQTT_BROKER_PORT, 'MqttSubscriber', MqttClient::MQTT_3_1, null, $logger);
 
@@ -49,19 +51,16 @@ try {
 
         echo "Connected with database!\n";
 
-        // P     repare insert into database
-        $stmt = $sqlconnect->prepare("INSERT INTO sensor_messages (room_topic, sensor_topic,  ir_value, temp_value) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssdd", $roomname, $sensorname, $IRvalue, $TEMPvalue);
+        // Prepare insert into database
+        $stmt = $sqlconnect->prepare("INSERT INTO sensor_messages (room_topic, sensor_topic, value) VALUES (?, ?, ?)");
+        $stmt->bind_param("ssd", $roomname, $sensorname, $values);
 
         // set parameters and execute
         $topicslice = explode("/",$topic);
         $roomname = $topicslice[0];
         $sensorname = $topicslice[1];
 
-        $values = explode("/",$message);
-        $IRvalue = $values[0];
-        $TEMPvalue = $values[1];
-
+        $values = $message;
         $stmt->execute();
 
         // Close connection
@@ -72,7 +71,7 @@ try {
     }, MqttClient::QOS_AT_MOST_ONCE);
 
     // Subscribe to the topic 'livingroom/t2' using QoS 0.
-    $client->subscribe('livingroom/t2', function (string $topic, string $message, bool $retained) use ($logger, $client) {
+    $client->subscribe('livingroom/f1', function (string $topic, string $message, bool $retained) use ($logger, $client) {
         $logger->info('We received a {typeOfMessage} on topic [{topic}]: {message}', [
             'topic' => $topic,
             'message' => $message,
@@ -88,18 +87,15 @@ try {
         echo "Connected with database!\n";
 
         // Prepare insert into database
-        $stmt = $sqlconnect->prepare("INSERT INTO sensor_messages (room_topic, sensor_topic, ir_value, temp_value) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssdd", $roomname, $sensorname, $IRvalue, $TEMPvalue);
+        $stmt = $sqlconnect->prepare("INSERT INTO sensor_messages (room_topic, sensor_topic, value) VALUES (?, ?, ?)");
+        $stmt->bind_param("ssd", $roomname, $sensorname, $values);
 
         // set parameters and execute
         $topicslice = explode("/",$topic);
         $roomname = $topicslice[0];
         $sensorname = $topicslice[1];
 
-        $values = explode("/",$message);
-        $IRvalue = $values[0];
-        $TEMPvalue = $values[1];
-
+        $values = $message;
         $stmt->execute();
 
         // Close connection
