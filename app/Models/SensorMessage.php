@@ -12,6 +12,11 @@ class SensorMessage extends Model
     public $timestamps = true;
     use HasFactory;
 
+    protected $fillable = [
+        'sensor_topic',
+        'value'
+    ];
+
     public function sensor() {
         return $this->belongsTo(Sensor::class, 'sensor_topic', 'topic');
     }

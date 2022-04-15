@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoomSeeder::class,
             SensorSeeder::class,
-            SensorMessageSeeder::class,
+            // SensorMessageSeeder::class,
         ]);
     }
 }

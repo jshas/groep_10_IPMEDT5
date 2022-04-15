@@ -19,7 +19,6 @@ class CreateRoomsTable extends Migration
             $table->json("layout");
         });
     }
-f
     /**
      * Reverse the migrations.
      *

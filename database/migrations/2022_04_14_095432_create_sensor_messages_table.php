@@ -16,8 +16,8 @@ class CreateSensorMessagesTable extends Migration
         Schema::create('sensor_messages', function (Blueprint $table) {
             $table->id()->startingValue(1);
             $table->string("room_topic")->nullable();
-            $table->string('sensor_topic')->default('t1');
-            $table->foreign('sensor_topic')->references('topic')->on('sensors')->onDelete('cascade')->onUpdate('cascade');;
+            $table->string('sensor_topic');
+            $table->foreign('sensor_topic')->references('topic')->on('sensors')->onDelete('cascade')->onUpdate('cascade');
             // value van de message
             $table->float('value')->default(0); // flame = 0,1 
             $table->timestamp('created_at')->useCurrent();
