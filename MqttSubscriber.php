@@ -49,7 +49,7 @@ try {
 
         echo "Connected with database!\n";
 
-        // Prepare insert into database
+        // P     repare insert into database
         $stmt = $sqlconnect->prepare("INSERT INTO sensor_messages (room_topic, sensor_topic,  ir_value, temp_value) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssdd", $roomname, $sensorname, $IRvalue, $TEMPvalue);
 

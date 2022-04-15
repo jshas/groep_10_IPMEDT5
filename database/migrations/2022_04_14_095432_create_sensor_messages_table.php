@@ -31,9 +31,9 @@ class CreateSensorMessagesTable extends Migration
      */
     public function down()
     {
-        Schema::table('sensor_messages', function (Blueprint $table) {
-            $table->dropForeign(['sensor_topic']);
-          });
+        // Schema::table('sensor_messages', function (Blueprint $table) {
+        //     $table->dropForeign(['sensor_topic']);
+        //   });
         Schema::dropIfExists('sensor_messages');
     }
 }

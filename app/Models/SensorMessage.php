@@ -9,12 +9,12 @@ use App\Models\Sensor;
 class SensorMessage extends Model
 {
     protected $table = "sensor_messages";
-    public $timestamps = true;
+    public $timestamps = false;
     use HasFactory;
 
     protected $fillable = [
         'sensor_topic',
-        'value'
+        'value',
     ];
 
     public function sensor() {
