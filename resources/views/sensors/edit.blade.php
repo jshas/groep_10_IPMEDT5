@@ -44,7 +44,7 @@
                 @endif    
             </section>
 
-            <section class="form__section">
+            {{-- <section class="form__section">
                 <label class="form__label" for="topic">MQTT Topic</label>
                 <input class="form__input  @error('topic') form__input--error @enderror"  id="topic" placeholder="For example: basement" type="text" value="{{  $sensor->topic }}">
                 @if ($errors->get('topic'))
@@ -55,7 +55,7 @@
                     </section> 
                 @endif    
 
-            </section>  
+            </section>   --}}
 
             <section class="form__section">
                 <label class="form__label" for="sensorSelect">Choose a sensor type:</label>

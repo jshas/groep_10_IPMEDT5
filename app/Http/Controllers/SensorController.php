@@ -88,7 +88,6 @@ class SensorController extends Controller
 
         $sensor= Sensor::findOrFail($id);
         $previousTopic = $sensor->topic;
-
         $previousName = $sensor->name;
         $validated = $request->validate([
             'name' => 'required|unique:rooms|max:40',
@@ -98,7 +97,7 @@ class SensorController extends Controller
                 ]);
         $sensor->name = $validated['name'];
         $sensor->type = $validated['type'];
-        dd($request->topic);
+        dd($validated);
         if($request['topic'] == []){
             $sensor->topic = $previousTopic;
         }
