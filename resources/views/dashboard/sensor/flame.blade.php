@@ -1,7 +1,7 @@
 
 @if($sensor-> value == 0) {{--  No fire detected. --}}
 <article class="sensor" data-type="flame">
-    <h3 class= "sensor__name"> {{$sensor->name}}</h3>
+    <h3 class= "sensor__name sensor__name--warning">{{ $sensor->name . " (" . $sensor->topic . ")"}}</h3>
     <section class="sensor__readout">
         <figure class="sensor__figure">
             <img src="/icon/fire.png" alt="A flame in black and white." class="sensor__img">
@@ -18,7 +18,7 @@
 
 @elseif($sensor->value>=0) {{--  Fire detected. This is not fine. --}}
 <article class="sensor sensor--alert" data-type="flame">
-    <h3 class= "sensor__name"> {{$sensor->name}}</h3>
+    <h3 class= "sensor__name sensor__name--warning">{{ $sensor->name . " (" . $sensor->topic . ")"}}</h3>
     <section class="sensor__readout">
         <figure class="sensor__figure">
             <img src="/icon/fire.png" alt="A flame in black and white." class="sensor__img">
@@ -36,7 +36,7 @@
 
 @else {{--  Incorrect value. --}}
 <article class="sensor" data-type="flame">
-    <h3 class= "sensor__name"> {{ $sensor->name }} </h3>
+    <h3 class= "sensor__name sensor__name--warning">{{ $sensor->name . ", (" . $sensor->topic . ")"}}</h3>
     <section class="sensor__readout">
         <figure class="sensor__figure">
             <img src="/icon/fire.png" alt="A flame in black and white." class="sensor__img">
