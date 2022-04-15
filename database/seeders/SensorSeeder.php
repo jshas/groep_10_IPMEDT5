@@ -36,7 +36,7 @@ class SensorSeeder extends Seeder
             'topic' => 'f2',
             'room_id' => 2,
             'location' => 0
-        ]); 
+        ]);
         DB::table('sensors')->insert([
             'name' => 'South',
             'type' => 'Temperature',
@@ -49,7 +49,7 @@ class SensorSeeder extends Seeder
             'name' => 'South',
             'type' => 'Temperature',
             'topic' => 't3',
-            'room_id' => 2,
+            'room_id' => 3,
             'location' => 12
         ]); 
 

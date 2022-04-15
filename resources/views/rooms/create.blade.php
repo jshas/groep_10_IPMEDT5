@@ -32,7 +32,7 @@
                 @endif    
             </section>
 
-            {{-- <section class="form__section">
+            <section class="form__section">
                 <label class="form__label" for="MQTT-Topic">MQTT Topic</label>
                 <input class="form__input  @error('MQTT-topic') form__input--error @enderror"  id="MQTT-Topic" placeholder="For example: basement" type="text" value="{{  old('MQTT-topic') }}">
                 @if ($errors->get('MQTT-topic'))
@@ -42,7 +42,7 @@
                         @endforeach
                     </section> 
                 @endif    
-            </section> --}}
+            </section>
                 
             <section class="form__section">
                 <section class="form__description"> 

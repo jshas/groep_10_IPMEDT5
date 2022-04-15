@@ -19,32 +19,32 @@ class SensorMessageSeeder extends Seeder
             'value' => 0.0
         ]);
         DB::table('sensor_messages')->insert([
-            'sensor_topic' => 't2',
-            'value' => 33
+            'sensor_topic' => 't1',
+            'value' => 90
         ]);
-        // DB::table('sensor_messages')->insert([
-        //     'sensor_topic' => 't2',
-        //     'value' => 39
-        // ]);
-        // DB::table('sensor_messages')->insert([
-        //     'sensor_topic' => 'f2',
-        //     'value' => 0.0
-        // ]);
-        // DB::table('sensor_messages')->insert([
-        //     'sensor_topic' => 't3',
-        //     'value' => 39.0
-        // ]);
-        // DB::table('sensor_messages')->insert([
-        //     'sensor_topic' => 'f3',
-        //     'value' => 0.0
-        // ]);
-        // DB::table('sensor_messages')->insert([
-        //     'sensor_topic' => 't4',
-        //     'value' => 39.0
-        // ]);
-        // DB::table('sensor_messages')->insert([
-        //     'sensor_topic' => 'f4',
-        //     'value' => 0.0
-        // ]);
+        DB::table('sensor_messages')->insert([
+            'sensor_topic' => 't2',
+            'value' => 39
+        ]);
+        DB::table('sensor_messages')->insert([
+            'sensor_topic' => 'f2',
+            'value' => 0.0
+        ]);
+        DB::table('sensor_messages')->insert([
+            'sensor_topic' => 't3',
+            'value' => 50.0
+        ]);
+        DB::table('sensor_messages')->insert([
+            'sensor_topic' => 'f3',
+            'value' => 0.0
+        ]);
+        DB::table('sensor_messages')->insert([
+            'sensor_topic' => 't4',
+            'value' => 19.0
+        ]);
+        DB::table('sensor_messages')->insert([
+            'sensor_topic' => 'f4',
+            'value' => 0.0
+        ]);
     }
 }

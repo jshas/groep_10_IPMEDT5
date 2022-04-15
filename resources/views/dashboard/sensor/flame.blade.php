@@ -1,8 +1,8 @@
 @php
- $sensorArray = $sensor->messages->sortByDesc('id')->take(1)->pluck('value');
- $sensorValue = 0;
- if(count($sensorArray) > 0)
-     $sensorValue = $sensorArray[0]
+    $sensorArray = $sensor->messages->sortByDesc('id')->take(1)->pluck('value');
+    $sensorValue = 0;
+    if(count($sensorArray) > 0)
+        $sensorValue = $sensorArray[0];
 @endphp
 
 @if($sensor-> value == 0) {{--  No fire detected. --}}
@@ -22,7 +22,7 @@
 
 </article>
 
-@elseif($sensor->value>=0) {{--  Fire detected. This is not fine. --}}
+@elseif($sensorValue>=0) {{--  Fire detected. This is not fine. --}}
 <article class="sensor sensor--alert" data-type="flame">
     <h3 class= "sensor__name sensor__name--warning">{{ $sensor->name . " (" . $sensor->topic . ")"}}</h3>
     <section class="sensor__readout">

@@ -1,7 +1,10 @@
 @php
     $roomAlert = false;
     foreach($room->sensors as $sensor){
-        if($sensor->value > 55){
+        $value = json_encode($sensor->messages->sortByDesc('id')->take(1)->pluck('value')); 
+        $sensorValue = 0;
+        $sensorvalue = $value[0];
+        if($sensorValue > 55){
             $roomAlert = true;
             break;
         };
