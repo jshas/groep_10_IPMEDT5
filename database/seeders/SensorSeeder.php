@@ -18,6 +18,7 @@ class SensorSeeder extends Seeder
             'name' => 'North',
             'type' => 'Flame',
             // 'room_name' => 'Living room',
+            'topic' => 't1',
             'room_id' => 1,
             'value' => 0,
             'location' => 5
@@ -26,6 +27,7 @@ class SensorSeeder extends Seeder
         DB::table('sensors')->insert([
             'name' => 'North',
             'type' => 'Temperature',
+            'topic' => 't2',
             'room_id' => 1,
             'value' => 22,
             'location' => 55
@@ -34,6 +36,7 @@ class SensorSeeder extends Seeder
         DB::table('sensors')->insert([
             'name' => 'South',
             'type' => 'Flame',
+            'topic' => 'f1',
             'room_id' => 2,
             'value' => 0,
             'location' => 44
@@ -42,6 +45,7 @@ class SensorSeeder extends Seeder
         DB::table('sensors')->insert([
             'name' => 'South',
             'type' => 'Temperature',
+            'topic' => 't3',
             'room_id' => 2,
             'value' => 20,
             'location' => 12
@@ -50,6 +54,7 @@ class SensorSeeder extends Seeder
         DB::table('sensors')->insert([
             'name' => 'South',
             'type' => 'Flame',
+            'topic' => 'f3',
             'room_id' => 3,
             'value' => 0,
             'location' => 44
@@ -58,6 +63,7 @@ class SensorSeeder extends Seeder
         DB::table('sensors')->insert([
             'name' => 'South',
             'type' => 'Temperature',
+            'topic' => 't4',
             'room_id' => 3,
             'value' => 50,
             'location' => 12

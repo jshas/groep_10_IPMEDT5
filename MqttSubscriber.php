@@ -13,17 +13,15 @@ use PhpMqtt\Client\MqttClient;
 use Psr\Log\LogLevel;
 
 define('SQL_HOST','localhost');
-define('DB_USER',"laravel");
-define('DB_PASSWORD',"password");
-define('DB_NAME','laravel');
+define('DB_USER',"laravel_user");
+define('DB_PASSWORD',"firstuser");
+define('DB_NAME','IPMEDT5_FD');
 
 
 // Create an instance of a PSR-3 compliant logger. For this example, we will also use the logger to log exceptions.
 $logger = new SimpleLogger(LogLevel::INFO);
 
 try {
-
-
     // Create a new instance of an MQTT client and configure it to use the shared broker host and port.
     $client = new MqttClient(MQTT_BROKER_HOST, MQTT_BROKER_PORT, 'MqttSubscriber', MqttClient::MQTT_3_1, null, $logger);
 
@@ -52,7 +50,7 @@ try {
         echo "Connected with database!\n";
 
         // Prepare insert into database
-        $stmt = $sqlconnect->prepare("INSERT INTO sensorvalue (room_topic, sensor_topic, IRvalue, TEMPvalue) VALUES (?, ?, ?, ?)");
+        $stmt = $sqlconnect->prepare("INSERT INTO sensor_messages (room_topic, sensor_topic,  ir_value, temp_value) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssdd", $roomname, $sensorname, $IRvalue, $TEMPvalue);
 
         // set parameters and execute
@@ -90,7 +88,7 @@ try {
         echo "Connected with database!\n";
 
         // Prepare insert into database
-        $stmt = $sqlconnect->prepare("INSERT INTO sensorvalue (room_topic, sensor_topic, IRvalue, TEMPvalue) VALUES (?, ?, ?, ?)");
+        $stmt = $sqlconnect->prepare("INSERT INTO sensor_messages (room_topic, sensor_topic, ir_value, temp_value) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssdd", $roomname, $sensorname, $IRvalue, $TEMPvalue);
 
         // set parameters and execute
