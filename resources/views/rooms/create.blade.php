@@ -2,7 +2,7 @@
 @section('title', 'Create Room')
 @section('subheading', 'Add Room' )
 @section('additional-js-scripts')
-    <script src="/js/roomCreate.js" defer></script>
+    <script src="/js/createRoom.js" defer></script>
 @endsection
 @include('components.header')
 @include('components.sidebar')
