@@ -43,7 +43,7 @@ class SmsController extends Controller
             echo "<script>setTimeout(function(){ window.location.href = '/'; }, 5000);</script>";
         }
         if($sms_count->count > 4) {
-            return view('dashboard', ['rooms' => $rooms]);
+            return view('rooms.index', ['rooms' => $rooms]);
         }
         if($sms_count->count > 3) {
             $affected = DB::table('sms_counting')

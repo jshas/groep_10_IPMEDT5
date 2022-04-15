@@ -29,7 +29,7 @@ class RoomController extends Controller
                 $sensorValue = $sensorArray[0];
             }
             if($sensorValue >= 50 or $sensorValue == 1) {
-                return $this->fire();
+                return $this->fire($sensor);
             }
         }
         // echo $rooms;
@@ -132,7 +132,7 @@ class RoomController extends Controller
         return redirect('rooms');
     }
 
-    public function fire(){
+    public function fire(Sensor $sensor){
         // Maken van variabelen om het leven makkelijker te maken
         // Twee soorten variabelen Temperatuur & Infrarood
         $temperature_sensors = \App\Models\Sensor::where("type", "Temperature")->get();
@@ -228,7 +228,7 @@ class RoomController extends Controller
         // }
         // Nadat alles is nagekeken en er geen vuur is gedetecteerd wordt de homepagina weergegeven.
         $rooms = Room::with('sensors')->get();
-        return view('dashboard', ['rooms' => $rooms]);
+        return view('rooms.index', ['rooms' => $rooms]);
     }
 }
 
