@@ -32,7 +32,7 @@ class SmsController extends Controller
             Nexmo::message()->send([
                 'to' => '31613013763',
                 'from' => '31613013763',
-                'text' => 'Er zijn nu al 3 sms'jes verstuurd. Vergeet niet op de reset knop te drukken als je weer sms'jes wilt ontvangen.'
+                'text' => 'Er zijn nu al 3 smsjes verstuurd. Vergeet niet op de reset knop te drukken als je weer smsjes wilt ontvangen'
             ]);
             $affected = DB::table('sms_counting')
               ->update(['count' => $sms_count->count + 1]);
