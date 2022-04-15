@@ -28,8 +28,9 @@ class RoomController extends Controller
             if(count($sensorArray) > 0) {
                 $sensorValue = $sensorArray[0];
             }
-            if($sensorValue >= 50 or $sensorValue == 1) {
-                return $this->fire($sensor);
+            if($sensorValue == 1) {
+                return redirect("/sms");
+                // return $this->fire($sensor);
             }
         }
         // echo $rooms;
@@ -143,6 +144,7 @@ class RoomController extends Controller
         $flame_name = "";
         $flame_room_name = "";
 
+        // Ophalen van alle sensor data
         $sensorArray = $sensor->messages->sortByDesc('id')->take(1)->pluck('value');
             $sensorValue = 0;
             if(count($sensorArray) > 0) {
@@ -208,24 +210,6 @@ class RoomController extends Controller
                 }
             }
         }
-
-
-
-        // // Precies hetzelfde als de eerste, maar hier zijn de sensoren omgedraait
-        // foreach($flame_sensors as $flame){
-        //     if($flame->value == 1){
-        //         $flame_name = $flame->name;
-        //         $flame_room_name = $flame->room_name;
-        //         foreach($temperature_sensors as $temp){
-        //             if($temp-> name == $flame_name && $temp->room_name == $flame_room_name){
-        //                 if($temp->value >= 50){
-        //                     return redirect('/sms');
-        //                 }
-        //             }
-        //         }
-        //     }
-
-        // }
         // Nadat alles is nagekeken en er geen vuur is gedetecteerd wordt de homepagina weergegeven.
         $rooms = Room::with('sensors')->get();
         return view('rooms.index', ['rooms' => $rooms]);
