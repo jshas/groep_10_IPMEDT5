@@ -19,7 +19,6 @@ class CreateSensorsTable extends Migration
             $table->string('type');
             $table->string('topic')->unique();
             $table->foreignId('room_id');
-            $table->integer("value");
             // $table->string('room_name');
 
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade')->onUpdate('cascade');

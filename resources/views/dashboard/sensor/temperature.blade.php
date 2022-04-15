@@ -1,9 +1,8 @@
 @php
- $sensorArray = $sensor->messages->sortByDesc('id')->take(1)->pluck('temp_value');
+ $sensorArray = $sensor->messages->sortByDesc('id')->take(1)->pluck('value');
  $sensorValue = 0;
  if(count($sensorArray) > 0)
      $sensorValue = $sensorArray[0]
-
 @endphp
 
 @if($sensor->value >= 40 && $sensor->value <= 55) {{--  Warning state--}}

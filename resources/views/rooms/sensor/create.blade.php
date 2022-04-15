@@ -27,6 +27,18 @@
             </section>
 
             <section class="form__section">
+                <label class="form__label" for="topic">MQTT Topic</label>
+                <input class="form__input  @error('topic') form__input--error @enderror"  id="topic" placeholder="For example: basement" type="text" value="{{  old('topic') }}">
+                @if ($errors->get('topic'))
+                    <section class="form__alert">
+                        @foreach ($errors->get('topic') as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    </section> 
+                @endif    
+            </section>
+
+            <section class="form__section">
                 <label class="form__label" for="sensorSelect">Choose a sensor type:</label>
 
                 <select class="form__select" name="type" id="type" required>

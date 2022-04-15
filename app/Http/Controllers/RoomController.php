@@ -28,8 +28,7 @@ class RoomController extends Controller
      */
     public function create(){
         $rooms = Room::with('sensors')->get();
-        $roomTopics = RoomTopic::get();
-        return view('/rooms/create', ['rooms' => $rooms, 'roomTopics' => $roomTopics]);
+        return view('/rooms/create', ['rooms' => $rooms]);
     }
 
     /**

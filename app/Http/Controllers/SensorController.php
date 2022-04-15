@@ -33,9 +33,11 @@ class SensorController extends Controller
         $validated = $request->validate([
             'name' => 'required|unique:rooms|max:40',
             'type' => 'required',
+            'topic' => 'required|unique:sensors',
             'location' => 'min:0|max:99',
                 ]);
-        $sensor->name = $validated['name'];
+        dd($validated);
+                $sensor->name = $validated['name'];
         $sensor->type = $validated['type'];
         $sensor->room_id = $room['id'];
         $sensor->topic = $validated['topic'];
@@ -83,16 +85,27 @@ class SensorController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $sensor= Sensor::findOrFail($id);
+        $previousTopic = $sensor->topic;
+
+        $previousName = $sensor->name;
         $validated = $request->validate([
             'name' => 'required|unique:rooms|max:40',
             'type' => 'required',
-            'topic' => 'required|unique:sensor',
+            'topic' => 'unique:sensor',
             'location' => 'required|min:0|max:99',
                 ]);
-        $sensor->name = $request['name'];
-        $sensor->type = $request['type'];
-        $sensor->topic = $request['topic'];
+        $sensor->name = $validated['name'];
+        $sensor->type = $validated['type'];
+        dd($request->topic);
+        if($request['topic'] == []){
+            $sensor->topic = $previousTopic;
+        }
+        if($request['name'] == []){
+            $sensor->name = $previousTopic;
+        }
+        $sensor->topic = $validated['topic'];
         $sensor->location = $request['location'];
         $sensor->save();
         return redirect('rooms');
